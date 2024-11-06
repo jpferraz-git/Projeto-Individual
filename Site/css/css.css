@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+
+    font-family: 'Montserrat', 'Playfair Display', 'Raleway';
+    background-color: #222222;
+}
+
+header{
+
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 6px solid;
+    border-image: linear-gradient(to right, #35dbe4, #1360c5);
+    border-image-slice: 1;
+}
+
+
+header img{
+    padding-top: 6px ;
+    padding-left: 65px;
+    padding-bottom: 5px;
+    width: 80px;
+    transition: transform 0.3s;
+
+}
+
+header img:hover{
+
+    transform: scale(1.15);
+    
+}
+
+
+
+header p{
+
+    display: flex;
+    text-align: center;
+}
+
+nav {
+
+    display: flex;
+}
+
+nav a{
+
+    color: white;
+    font-family: 'Montserrat';
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 30px;
+    position: relative;
+    transition: transform 0.3s;
+
+}
+
+nav a:hover{
+
+    transform: scale(1.15);
+}
+
+nav a:last-child{
+    border-right: none;
+}
+
+
+nav a:not(:last-child)::after{
+
+    content: "";
+    position: absolute;
+    right: 0;
+    top: -14px;
+    bottom:-14px;
+    width: 2.5px;
+    background:linear-gradient(to bottom,#35dbe4, #1360c5) ;
+    transition: none;
+
+}
+
+.inicio_home{
+
+    width: 1350px;
+    height: 800px;
+    background:linear-gradient(to right, #101d0d, #272325) ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-right: 6px solid;
+    border-bottom: 6px solid;
+    border-image: linear-gradient(to bottom, #35dbe4, #1360c5);
+    border-image-slice: 1;
+
+}
