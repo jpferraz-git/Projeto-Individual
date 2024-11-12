@@ -1,0 +1,13 @@
+somente a tabela de respostas
+armazena tudo num array
+soma a pontuação e da um resultado 
+ex
+
+	q1 q2 q3
+pontos: 1 2 3 
+
+if(pontuação < 10){
+	
+	'Você entende sobre a academia e sobre seus conceitos'
+}
+
