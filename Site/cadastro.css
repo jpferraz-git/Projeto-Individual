@@ -20,8 +20,8 @@ body{
 .container{
 
     position: relative;
-    width: 750px;
-    height: 450px;
+    width: 800px;
+    height: 550px;
     border: 2px solid #35dbe4;
     box-shadow: 0 0 25px #35dbe4;
     overflow: hidden;
@@ -39,7 +39,7 @@ body{
 }
 .form-box.login{
 
-    left: 0;
+    right: 0;
     padding: 0 40px;
 }
 .form-box h2{
@@ -68,7 +68,7 @@ body{
     color: #ffffff;
     font-weight: 600;
     border-bottom: 2px solid #ffffff;
-    padding-right: 23px;
+    padding-left: 23px;
     transition: 0.5s;
 }
 
@@ -178,7 +178,8 @@ body{
     height: 100%;
     width: 50%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
     flex-direction: column;
     text-align: right;
 
@@ -186,8 +187,10 @@ body{
 
 .info-content.login{
 
-    right: 0;
-    padding: 0 40px 60px 150px;
+    left: 0;
+    padding-top: 10px;
+    padding-right: 80px;
+ 
 }
 
 .info-content h2{
@@ -204,16 +207,19 @@ body{
 }
 
 
+.info-content img{
+
+    width: 70%;
+}
 .container .curved-shape{
 
     position: absolute;
-    right: 0;
-    top: -5px;
-    height: 600px;
-    width: 850px;
+    left: 0;
+    bottom: -50px;
+    height: 500px;
+    width: 600px;
     background: linear-gradient(45deg, #222222, #35dbe4);
-    transform: rotate(10deg) skewY(40deg);
-    transform-origin: bottom right;
-
+    transform: rotate(-10deg) skewY(-40deg);
+    transform-origin: bottom left;
 
 }
