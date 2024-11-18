@@ -20,8 +20,8 @@ body{
 .container{
 
     position: relative;
-    width: 800px;
-    height: 550px;
+    width: 750px;
+    height: 450px;
     border: 2px solid #35dbe4;
     box-shadow: 0 0 25px #35dbe4;
     overflow: hidden;
@@ -39,7 +39,7 @@ body{
 }
 .form-box.login{
 
-    right: 0;
+    left: 0;
     padding: 0 40px;
 }
 .form-box h2{
@@ -68,7 +68,7 @@ body{
     color: #ffffff;
     font-weight: 600;
     border-bottom: 2px solid #ffffff;
-    padding-left: 23px;
+    padding-right: 23px;
     transition: 0.5s;
 }
 
@@ -137,7 +137,7 @@ body{
     position: absolute;
     height: 100%;
     width: 100%;
-    background: linear-gradient(to top, #35dbe4, #1360c5);
+    background: linear-gradient(to top, #222222, #35dbe4);
     top: -100%;
     left: 0;
     z-index: -1;
@@ -178,8 +178,7 @@ body{
     height: 100%;
     width: 50%;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    justify-content: center;
     flex-direction: column;
     text-align: right;
 
@@ -187,10 +186,8 @@ body{
 
 .info-content.login{
 
-    left: 0;
-    padding-top: 10px;
-    padding-right: 80px;
- 
+    right: 0;
+    padding: 0 40px 60px 150px;
 }
 
 .info-content h2{
@@ -207,19 +204,16 @@ body{
 }
 
 
-.info-content img{
-
-    width: 70%;
-}
 .container .curved-shape{
 
     position: absolute;
-    left: 0;
-    bottom: -50px;
-    height: 500px;
-    width: 600px;
+    right: 0;
+    top: -5px;
+    height: 600px;
+    width: 850px;
     background: linear-gradient(45deg, #222222, #35dbe4);
-    transform: rotate(-10deg) skewY(-40deg);
-    transform-origin: bottom left;
+    transform: rotate(10deg) skewY(40deg);
+    transform-origin: bottom right;
+
 
 }
