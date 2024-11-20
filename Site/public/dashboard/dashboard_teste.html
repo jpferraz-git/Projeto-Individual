@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="btn-quiz" onclick="iniciarQuiz()">QUIZ</button>
+    <div id="conteudo_quiz"></div>
+</body>
+</html>
+
+
+<script>
+const perguntas = [
+    {
+        pergunta: "lorem",
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    },
+    {
+        pergunta: "lorem",
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    },
+    {
+        pergunta: "lorem",
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    },
+    {
+        pergunta: "lorem",
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    },
+    {
+        pergunta: "lorem",
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    },
+    {
+        pergunta: "lorem",
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    },
+    {
+        pergunta: "lorem",  
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    },
+    {
+        pergunta: "lorem",
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    },
+    {
+        pergunta: "lorem",
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    },
+    {
+        pergunta: "lorem",
+        opcoes: ["sla", "sla2", "sla3"],
+        pontuacao: ['A', 'B', 'C', 'D']
+    }
+];
+
+const mensagemFinal = {
+    maioriaA: "Abacaxi",
+    maioriaB: "Banana",
+    maioriaC: "Cereja",
+    maioriaD: "Damasco"
+};
+
+
+var pontuacao = {
+    A: 0,
+    B: 0,
+    C: 0,
+    D: 0
+};
+
+var indexPerguntaAtual = 0;
+
+function iniciarQuiz() {
+    document.getElementById('btn-quiz').style.display = 'none';
+    mostrarPergunta();
+}
+
+function mostrarPergunta() {
+    if (indexPerguntaAtual < perguntas.length) {
+        const perguntaAtual = perguntas[indexPerguntaAtual];
+        let opcoesAtuais = "";
+
+        for ( i = 0; i < perguntaAtual.opcoes.length; i++) {
+            opcoesAtuais += `
+                <button onclick="responder('${perguntaAtual.pontuacao[i]}')">${perguntaAtual.opcoes[i]}</button>
+            `;
+        }
+
+        conteudo_quiz.innerHTML = `
+            <h3>${perguntaAtual.pergunta}</h3>
+            <div>
+                ${opcoesAtuais}
+            </div>
+        `;
+    } else {
+        mostrarResultado();
+    }
+}
+
+function responder(pontuacaoEscolhida) {
+    pontuacao[pontuacaoEscolhida]++;
+    indexPerguntaAtual++;
+    mostrarPergunta();
+}
+
+function mostrarResultado() {
+    let mensagemFinal = "";
+    let maiorPontuacao = -1;
+
+    const letras = ['A', 'B', 'C', 'D']; 
+
+    for (let i = 0; i < letras.length; i++) {
+        const letraAtual = letras[i];
+        if (pontuacao[letraAtual] > maiorPontuacao) {
+            maiorPontuacao = pontuacao[letraAtual];
+            mensagemFinal = letraAtual;
+        }
+    }
+
+    let resultado = "";
+
+    switch (mensagemFinal) {
+        case "A":
+            resultado = mensagemFinal.maioriaA;
+            break;
+        case "B":
+            resultado = mensagemFinal.maioriaB;
+            break;
+        case "C":
+            resultado = mensagemFinal.maioriaC;
+            break;
+        case "D":
+            resultado = mensagemFinal.maioriaD;
+            break;
+    }
+
+
+    conteudo_quiz.innerHTML = `
+        <h3>Resultado</h3>
+        <p>${resultado}</p>
+    `;
+}
+
+</script>
