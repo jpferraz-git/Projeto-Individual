@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insane Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+
+    <div id="inicioQuiz">
+        <h1>CONTE COMO SE SENTE AO IR A ACADEMIA</h1>
+        <button id="comecarQuiz" onclick="comecarQuiz()">Comecar</button>
+    </div>
+    
+    <div class="app" id="blocoQuestoes">
+        <h1 id="numQuestao">QUIZ</h1>
+            <div class="quiz">
+                <h2 id="questao"></h2>
+                <div id="botoes">
+                </div>
+                <button id="next-btn"></button>
+            </div>
+        
+    </div>
+
+
+</body>
+</html>
+
+<script>
+
+    const questions = [
+        { question: "QUal a cor da laranja?",
+          answers: ['Tubarão', 'Linguiça', 'Arroz', 'Gustavo'],
+
+        },
+        { question: "O que é a vida?",
+        answers: ['Tubarão', 'Linguiça', 'Arroz', 'Gustavo'],
+
+      },
+        { question: "QUal a cor da laranja?",
+        answers: ['Tubarão', 'Linguiça', 'Arroz', 'Gustavo'],
+
+        },
+          
+    ]
+
+
+    function comecarQuiz(){
+        mostrarPergunta();
+        document.getElementById('inicioQuiz').style.display = 'none';
+        document.getElementById('blocoQuestoes').style.display = 'block';
+
+    }
+
+    var indexQuestaoAtual = 0;
+    var numeroQuestao = 1;
+
+    function mostrarPergunta(){
+        
+        questao.innerHTML = "";
+        var questaoAtual = questions[indexQuestaoAtual];  
+
+        if(indexQuestaoAtual == questions.length){
+
+            return redirecionarParaDashboard();
+
+        }
+
+        numQuestao.innerHTML = `Questão ${numeroQuestao}`;
+        questao.innerHTML += questions[indexQuestaoAtual].question;
+
+        numeroQuestao ++;
+
+        mostrarAlternativas(questaoAtual);
+    
+    }
+
+    function mostrarAlternativas(questaoAtual){
+
+        botoes.innerHTML = "";
+
+        for(var i = 0; i < questaoAtual.answers.length; i++){
+
+            botoes.innerHTML += `
+            <button class="btn" id="btn${i - 1}" onclick="mostrarPergunta()">${questaoAtual.answers[i]}</button> 
+            `
+
+        }
+
+        indexQuestaoAtual ++;  
+
+    }
+
+    function redirecionarParaDashboard(){
+
+        document.getElementById('blocoQuestoes').style.display = 'none';
+
+
+    }
+</script>
