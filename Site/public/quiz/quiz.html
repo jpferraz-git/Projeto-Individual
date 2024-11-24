@@ -4,13 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insane Quiz</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="quiz.css">
 </head>
 <body>
+ 
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="log">
+                    <img src="./images/logo_branca.png">
+                    <h2>GYM <span class="danger">IMPACT</span></h2>
+                </div>
 
-    <div id="inicioQuiz">
+            </div>
+            <div class="sidebar">
+                <div id="barra"></div>
+                <a href="#">
+                    <span class="material-symbols-sharp">bar_chart_4_bars</span>
+                    <h3>Dashboard</h3>
+                    <!-- <select>DASHBOARD
+                        <option value="perguntas">Perguntas</option>
+                        <option value="supino_game">Supino Gaming</option>
+                    </select> --> 
+                </a>
+                <a href="#">
+                    <span class="material-symbols-sharp">fitness_center</span>
+                    <h3>Supino Gaming</h3>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-sharp">list</span>
+                    <h3>Formulário</h3>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-sharp">forum</span>
+                    <h3>Blog de Relatos</h3>
+                </a>
+                <a href="index.html" class="active">
+                    <span class="material-symbols-sharp">keyboard_return</span>
+                    <h3>Retornar ao Site</h3>
+                </a>
+        
+            </div>
+        </aside>
+       
+
+    <div class="container_quiz">
+    <div id="start">
+        <div class="curved-shape">
+        </div>
+        <div class="inicioQuiz">
         <h1>CONTE COMO SE SENTE AO IR A ACADEMIA</h1>
         <button id="comecarQuiz" onclick="comecarQuiz()">Comecar</button>
+        </div>
     </div>
     
     <div class="app" id="blocoQuestoes">
@@ -28,9 +74,9 @@
         <h1>Seu resultado foi X</h1>
         <h1>Você será direcionado para a dashboard em 5 segundos</h1>
         <h1>Deseja fazer novamente?</h1>
-
     </div>
-
+    </div>
+    </div>
 
 </body>
 </html>
@@ -56,7 +102,7 @@
 
     function comecarQuiz(){
         mostrarPergunta();
-        document.getElementById('inicioQuiz').style.display = 'none';
+        document.getElementById('start').style.display = 'none';
         document.getElementById('blocoQuestoes').style.display = 'block';
 
     }

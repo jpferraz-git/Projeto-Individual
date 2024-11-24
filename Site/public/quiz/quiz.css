@@ -1,28 +1,247 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 *{
     margin: 0;
     padding: 0;
-    font-family: 'Montserrat';
+    outline: 0;
+    appearance: none;
+    border: 0;
+    text-decoration: none;
+    list-style: none;
     box-sizing: border-box;
+}
 
+html{
+
+    font-size: 14px;
+    height: 100%;
+    
 }
 
 body{
+    width: 100%;
+    height: 100%;
+    font-family: 'Montserrat', 'Playfair Display', 'Raleway';
+    font-size: 1rem;
+    background: linear-gradient(to left, #000000, #222222);
+    overflow-y: hidden;
+    color: white;
 
-    background: linear-gradient(to right, #222, #000);
+}
+
+
+.container{
+
+    display: flex;
+    width: 100%;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem;
+}
+
+a{
+    color: white;
+
+}
+
+img{
+
+    display: block;
+    width: 100%;
+}
+
+h1{
+
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+h2{
+    font-size: 1.5rem;
+
+}
+
+h3{
+
+    font: 1;
+}
+
+h4{
+
+    font-size: 0.88rem;
+}
+
+h5{
+
+    font-size: 0.75rem;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+.profile-photo{
+
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.text-muted{
+
+    color: aqua;
+
+}
+
+p{
+
+    color: blue;
+
+}
+
+b{
+
+    color: red;
+}
+
+.primary{
+
+    color: aqua;
+}
+
+.danger{
+
+    color:aqua;
+}
+
+.succes{
+
+    color: green;
+}
+
+.warning{
+
+    color: cadetblue;
+
+}
+
+aside{
+    width: 30vh;
+    height: 100vh;
+    background: #222222;
+    box-shadow: 0 0 15px #35dbe4;
+
+    
+}
+
+aside .top, .log{
+
+    background: #222222;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+
+aside .log img{
+
+    width: 75%;
+}
+
+aside .sidebar{
+
+    background: #f2f0f0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    top: 3rem;
+
+}
+
+aside h3{
+
+    font-weight: 500;
+
+}
+
+aside .sidebar #barra{
+
+    content: '';
+    width: 100%;
+    height: 0.5%;
+    background: #35dbe4;
+
+}
+aside .sidebar a{
+
+    display: flex;
+    color: #222;
+    width: 88%;
+    margin-top: 3rem;
+    margin-left: 2rem;
+    gap: 0.8rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    transition: all 300ms ease;
+}
+
+aside .sidebar a span{
+
+    font-size: 2rem;
+    transition: all 300ms ease; 
+}
+
+
+aside .sidebar a.active{
+
+    width: 100%;
+    background: #222;
+    color: #fff;
+    margin-left: 0;
+}
+
+
+aside .sidebar a.active span{
+
+    margin-left: 1rem;
+}
+
+aside .sidebar a:hover{
+
+    background: #222;
+    color: #35dbe4;
+}
+
+aside .sidebar a:hover span{
+
+    margin-left: 2rem;
+}
+
+
+
+.container_quiz{
+
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    text-align: center;
 
 }
 
 .app{
     display: none;
     background: #222;
-    width: 60%;
+    width: 80%;
     height: 60vh;
     margin: 100px auto 0;
-    padding: 30px;
-    border: 10px solid;
-    border-image:linear-gradient(to right, #222222, #35dbe4);
-    border-image-slice: 1;
+    padding: 2rem;
+    border: 10px solid #35dbe4;
+    
 
 }
 
@@ -48,7 +267,7 @@ body{
 }
 .quiz{
 
-    padding: 20px 0;
+    padding: 40px;
 
 }
 
@@ -75,25 +294,10 @@ body{
     transition: all 300ms;
 }
 
-.btn button:hover{
+.quiz button:hover{
 
-    background: #35dbe4;
-    color: #35dbe4;
-
-}
-
-
-#inicioQuiz{
-
-    background: #222;
-    color: white;
-    width: 60%;
-    height: 60vh;
-    margin: 100px auto 0;
-    padding: 30px;
-    border: 10px solid;
-    border-image:linear-gradient(to right, #222222, #35dbe4);
-    border-image-slice: 1;
+    background: #b6b0b0;
+    color: #222;
 
 }
 
@@ -108,10 +312,64 @@ body{
 
 
 
-#inicioQuiz button:hover{
+#start{
 
-    background: #35dbe4;
-    color: #35dbe4;
+
+    color: white;
+    width: 60%;
+    height: 60vh;
+    margin: 100px auto 0;
+    padding: 30px;
+    border: 2px solid #35dbe4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    position: relative;
+   
+
+}
+
+#start .curved-shape {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 553px;
+    width: 617px;
+    background: linear-gradient(45deg, #111, #35dbe4);
+    transform: rotate(0deg) skewY(41deg);
+    transform-origin: bottom right;
+    z-index: -1;
+}
+
+
+
+
+.inicioQuiz h1, button{
+
+    z-index: 10;
+}
+.inicioQuiz button{
+
+    background: #222;
+    color: #fff;
+    font-weight: 500;
+    width: 100%;
+    border: 1px solid #35dbe4;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 300ms;
+ 
+}
+
+#start button:hover{
+
+    background: #b6b0b0;
+    color: #222;
 
 }
 
