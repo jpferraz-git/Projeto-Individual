@@ -19,9 +19,16 @@
                 <h2 id="questao"></h2>
                 <div id="botoes">
                 </div>
-                <button id="next-btn"></button>
             </div>
         
+    </div>
+
+    <div id="finalQuestoes">
+        <h1>Você finalizou as Perguntas</h1>
+        <h1>Seu resultado foi X</h1>
+        <h1>Você será direcionado para a dashboard em 5 segundos</h1>
+        <h1>Deseja fazer novamente?</h1>
+
     </div>
 
 
@@ -68,7 +75,8 @@
 
         }
 
-        numQuestao.innerHTML = `Questão ${numeroQuestao}`;
+        numQuestao.innerHTML = `Questão ${numeroQuestao} `;
+
         questao.innerHTML += questions[indexQuestaoAtual].question;
 
         numeroQuestao ++;
@@ -96,7 +104,7 @@
     function redirecionarParaDashboard(){
 
         document.getElementById('blocoQuestoes').style.display = 'none';
-
+        document.getElementById('finalQuestoes').style.display = 'block';
 
     }
 </script>

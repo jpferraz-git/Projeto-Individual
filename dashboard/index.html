@@ -21,6 +21,7 @@
 
             </div>
             <div class="sidebar">
+                <div id="barra"></div>
                 <a href="#">
                     <span class="material-symbols-sharp">bar_chart_4_bars</span>
                     <h3>Dashboard</h3>
@@ -47,101 +48,95 @@
 
         <main>
             <h1>Dashboard</h1>
-                <div class="date">
-                    <input type="date">
+                <div id="data_e_hora">
+                    <h1 id="horaAtual">00:00:00</h1>
                 </div>
                 <div class="insights">
                         <div class="sales">
                             <span class="material-symbols-sharp">monitoring</span>
                             <div class="middle">
-                                <div class="left">
-                                    <h3>Total Sales</h3>
-                                    <h1>$25.000</h1>
-                                </div>
+                            
                                 <div class="progress">
-                                    <svg>
-                                        <circle cx='38'cy='38' r='36'></circle>
-                                    </svg>
-                                    <div class="number">
-                                        <p>80%</p>
-                                    </div>
+                
                                 </div>
                             </div>
-                            <small class="text-muted">Last 24 hours</small>
+                    
                         </div>
                       
                         <div class="expenses">
                             <span class="material-symbols-sharp">monitoring</span>
                             <div class="middle">
-                                <div class="left">
-                                    <h3>Total Sales</h3>
-                                    <h1>$25.000</h1>
-                                </div>
+                
                                 <div class="progress">
-                                    <svg>
-                                        <circle cx='38'cy='38' r='36'></circle>
-                                    </svg>
-                                    <div class="number">
-                                        <p>80%</p>
-                                    </div>
+                
                                 </div>
                             </div>
-                            <small class="text-muted">Last 24 hours</small>
+                    
                         </div>
                        
                         <div class="income">
                             <span class="material-symbols-sharp">monitoring</span>
                             <div class="middle">
-                                <div class="left">
-                                    <h3>Total Sales</h3>
-                                    <h1>$25.000</h1>
-                                </div>
+                             
                                 <div class="progress">
-                                    <svg>
-                                        <circle cx='38'cy='38' r='36'></circle>
-                                    </svg>
-                                    <div class="number">
-                                        <p>80%</p>
-                                    </div>
+                
                                 </div>
                             </div>
-                            <small class="text-muted">Last 24 hours</small>
+                    
                         </div>
                 </div>
 
-                <div class="recent-order">
-                    <h2>Recent Orders</h2>
-                    <table>
-                            <thead>
-                                <tr>
-                                    <th>Produto1</th>
-                                    <th>Produto1</th>
-                                    <th>Produto1</th>
-                                    <th>Produto1</th>
-                                    <th>Produto1</th>
-                                    <th>Produto1</th>
-                                    <th>Produto1</th>
-                                    <th>Produto1</th>
-                                    <th>Produto1</th>
-                                    <th>Produto1</th>
-                                
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>ABacaxi</td>
-                                    <td>ABacaxi</td>
-                                    <td>ABacaxi</td>
-                                    <td>ABacaxi</td>
-                                    <td>ABacaxi</td>
-                                </tr>
-                            </tbody>
-                    </table>
-                    <a>Show All</a>
+                <div class="graphBox">
+                    <div class="box">
+                        <canvas id="myChart"></canvas>
+                    </div>
                 </div>
 
         </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+ 
 </body>
 </html>
+
+<script>
+ 
+    const ctx = document.getElementById('myChart');
+
+    new Chart (ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        backgroundColor: 'rgba(0, 0, 0, 0.2)',  // Cor de fundo da área
+    }
+});
+
+ 
+    //BLOCO DE DATA E HORA
+    var tempo = document.getElementById("horaAtual");
+
+    setInterval(() => {
+
+    var hora = new Date();
+    tempo.innerHTML = hora.toLocaleTimeString();
+    
+    }, 1000)
+
+
+</script>

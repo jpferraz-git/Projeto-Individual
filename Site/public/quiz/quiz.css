@@ -15,25 +15,37 @@ body{
 
 .app{
     display: none;
-    background: #fff;
+    background: #222;
     width: 60%;
     height: 60vh;
     margin: 100px auto 0;
-    border-radius: 10px;
     padding: 30px;
+    border: 10px solid;
+    border-image:linear-gradient(to right, #222222, #35dbe4);
+    border-image-slice: 1;
 
 }
 
 .app h1{
 
     font-size: 25px;
-    color: aqua;
+    color: #fff;
     font-weight: 600;
-    border-bottom: 1px solid #333;
+    border-bottom: 3px solid #333;
     padding-bottom: 3px;
+
 
 }
 
+.app h1{
+
+    font-size: 25px;
+    color: #35dbe4;
+    font-weight: 600;
+    border-bottom: 1px solid #333;
+    padding-bottom: 3px;
+    text-align: center;
+}
 .quiz{
 
     padding: 20px 0;
@@ -43,46 +55,49 @@ body{
 .quiz h2{
 
     font-size: 18px;
-    color: aqua;
+    color: #fff;
     font-weight: 18px;
 
 }
 
 .btn{
 
-    background: #fff;
-    color: aqua;
+    background: #222;
+    color: #fff;
     font-weight: 500;
     width: 100%;
-    border: 1px solid blue;
+    border: 1px solid #35dbe4;
     padding: 10px;
     margin: 10px 0;
     text-align: left;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 300ms;
 }
 
-.btn:hover{
+.btn button:hover{
 
-    background: #222;
-    color: #fff;
+    background: #35dbe4;
+    color: #35dbe4;
 
 }
 
 
 #inicioQuiz{
 
-    background: #fff;
+    background: #222;
+    color: white;
     width: 60%;
-    height: 50vh;
+    height: 60vh;
     margin: 100px auto 0;
-    border-radius: 10px;
     padding: 30px;
-    text-align: center;
+    border: 10px solid;
+    border-image:linear-gradient(to right, #222222, #35dbe4);
+    border-image-slice: 1;
 
 }
 
-#inicioQuiz button{
+#comecarQuiz{
 
     display: flex;
     flex-direction: column;
@@ -91,36 +106,16 @@ body{
 
 }
 
-.app h1{
-
-    font-size: 25px;
-    color: aqua;
-    font-weight: 600;
-    border-bottom: 1px solid #333;
-    padding-bottom: 3px;
-    text-align: center;
-}
 
 
-#comecarQuiz{
+#inicioQuiz button:hover{
 
-    background: #fff;
-    color: aqua;
-    font-weight: 500;
-    width: 100%;
-    border: 1px solid blue;
-    padding: 10px;
-    margin: 10px 0;
-    text-align: center;
-    border-radius: 4px;
-    cursor: pointer;
-    
-}
-
-.btn:hover{
-
-    background: #222;
-    color: #fff;
+    background: #35dbe4;
+    color: #35dbe4;
 
 }
 
+#finalQuestoes{
+
+    display: none;
+}
