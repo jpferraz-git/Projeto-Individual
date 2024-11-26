@@ -13,7 +13,7 @@
         <aside>
             <div class="top">
                 <div class="log">
-                    <img src="./images/logo_branca.png">
+                    <img src="../assets/logo_branca.png">
                     <h2>GYM <span class="danger">IMPACT</span></h2>
                 </div>
 
@@ -51,8 +51,6 @@
 
     <div class="container_quiz">
     <div id="start">
-        <div class="curved-shape">
-        </div>
         <div class="inicioQuiz">
         <h1>CONTE COMO SE SENTE AO IR A ACADEMIA</h1>
         <button id="comecarQuiz" onclick="comecarQuiz()">Comecar</button>
@@ -62,18 +60,20 @@
     <div class="app" id="blocoQuestoes">
         <h1 id="numQuestao">QUIZ</h1>
             <div class="quiz">
+                <div class="diagonal_esquerda"></div>
                 <h2 id="questao"></h2>
-                <div id="botoes">
-                </div>
+                <div id="botoes"></div>
+                <div class="diagonal_direita"></div>
             </div>
         
     </div>
 
     <div id="finalQuestoes">
         <h1>Você finalizou as Perguntas</h1>
-        <h1>Seu resultado foi X</h1>
-        <h1>Você será direcionado para a dashboard em 5 segundos</h1>
-        <h1>Deseja fazer novamente?</h1>
+        <h1>Seu resultado foi <b id="resultado">s</b></h1>
+        <h1>Você será redirecionado para a dashbaord em <b id="timer"></b> segundos</h1>
+        <button onclick="redirecionarDashboard()">ir para Dashboard</button>
+        <button onclick="reiniciarQuiz()">Deseja fazer novamente? </button>
     </div>
     </div>
     </div>
@@ -83,22 +83,69 @@
 
 <script>
 
+    document.getElementById('finalQuestoes').style.display = 'none';
+
     const questions = [
-        { question: "QUal a cor da laranja?",
-          answers: ['Tubarão', 'Linguiça', 'Arroz', 'Gustavo'],
+        { question: "Com que frequência você segue seu plano de treinos?",
+          answers: ['Sempre', 'Frequentemente', 'Ás Vezes', 'Raramente'],
+          pontos: ['A', 'B', 'C', 'D']
 
         },
-        { question: "O que é a vida?",
-        answers: ['Tubarão', 'Linguiça', 'Arroz', 'Gustavo'],
+        { question: "Você costuma estabelecer horários fixos para treinar?",
+        answers: ['Sim, consigo ir sempre no mesmo horário', 'Sim, mas tem dias que não consigo treinar no horário',
+         'Às vezes consigo treinar no horário que estava planejado', 'Não consigo seguir um horário fixo para treinar'],
+         pontos: ['A', 'B', 'C', 'D']
 
       },
+        { question: "Você sente que dá o seu máximo durante os treinos?",
+        answers: ['Sempre saio satisfeito com meu desempenho no treino', 'Quando estou com a cabela limpa sinto que consigo extrair mais'
+        , 'Às vezes consigo dar o meu melhor', 'Muito raramente sinto que dei meu máximo nos treinos'],
+        pontos: ['A', 'B', 'C', 'D']
+
+        },  
+        { question: "Como você se sente quando acaba um bom treino?",
+        answers: ['Me sinto muito bem, parece que todo o meu dia flui muito melhor', 
+        'Me sinto com a sensação de dever cumprido e que fiz meu melhor', 'Tenho a sensação que fico mais animado, disposto e motivado para o dia', 
+        'Sinto como se fosse apenas mais um treino comum'],
+        pontos: ['A', 'B', 'C', 'D']
+
+        },
+        { question: "Você busca quebrar seus limites e buscar evolução nos treinos?",
+        answers: ['Sim, isso é o que da sentido ao treino', 'Sim e quando consigo me sinto com uma meta realizada',
+         'Quando estou muito motivado sinto que consigo quebrar os limites', 'Treino apenas por treinar, sem muita perspectiva de evoluir'],
+        pontos: ['A', 'B', 'C', 'D']
+
+        },
+        { question: "Como você avaliaria seu nível de esforço geral durante os treinos?",
+        answers: ['Intenso, sempre quero dar meu máximo', 'Mediano, não gosto de me desgastar muito', 'Depende do dia, mas geralmente é moderado', 'Leve'],
+        pontos: ['A', 'B', 'C', 'D']
+
+        },
+        { question: "Você percebe mudanças no seu humor e mente após o treino?",
+        answers: ['Muitas, em dias que não treino sinto que falta alguma coisa','Sim, sinto que fico mais produtivo e disposto para o dia',
+         'Sim, como melhora de autoestima e desempenho', 'Raramente percebo pois o cansaço é maior'],
+        pontos: ['A', 'B', 'C', 'D']
+
+        },
         { question: "QUal a cor da laranja?",
         answers: ['Tubarão', 'Linguiça', 'Arroz', 'Gustavo'],
+        pontos: ['A', 'B', 'C', 'D']
+
+        },
+        { question: "Você já parou para pensar em como academia impacta/impactou na sua vida?",
+        answers: ['Sim, sinto que a academia mudou minha vida', 'Sim, não consigo me imaginar sem o hábito de treinar',
+         'Sim, mas em coisas simples, como disposição e autoestima', 'Não, nunca percebi grandes mudanças'],
+        pontos: ['A', 'B', 'C', 'D']
 
         },
           
     ]
 
+    
+    var pontoA = 0;
+    var pontoB = 0;
+    var pontoC = 0;
+    var pontoD = 0;
 
     function comecarQuiz(){
         mostrarPergunta();
@@ -117,7 +164,7 @@
 
         if(indexQuestaoAtual == questions.length){
 
-            return redirecionarParaDashboard();
+            return mostrarFinal();
 
         }
 
@@ -128,6 +175,8 @@
         numeroQuestao ++;
 
         mostrarAlternativas(questaoAtual);
+        
+    
     
     }
 
@@ -138,19 +187,123 @@
         for(var i = 0; i < questaoAtual.answers.length; i++){
 
             botoes.innerHTML += `
-            <button class="btn" id="btn${i - 1}" onclick="mostrarPergunta()">${questaoAtual.answers[i]}</button> 
+            <button class="btn" id="btn${i}" onclick="contarPontos(${i})">${questaoAtual.answers[i]}</button> 
             `
-
+    
         }
 
         indexQuestaoAtual ++;  
 
     }
 
-    function redirecionarParaDashboard(){
+    function contarPontos(botaoClicado){
 
-        document.getElementById('blocoQuestoes').style.display = 'none';
-        document.getElementById('finalQuestoes').style.display = 'block';
+        if(botaoClicado == 0){
+            pontoA ++;
+
+        }else if(botaoClicado == 1){
+            pontoB ++;
+
+        }else if(botaoClicado == 2){
+            pontoC++;
+
+        }else if(botaoClicado == 3){
+            pontoD++
+
+        }
+        
+        mostrarPergunta();
 
     }
+
+    
+    var resultadoFinal = '';
+    var valorResultadoFinal = '';
+
+    function mostrarFinal(){
+
+        document.getElementById('blocoQuestoes').style.display = 'none';
+        document.getElementById('finalQuestoes').style.display = 'flex';
+
+
+        if(pontoA >= pontoB && pontoA >= pontoC && pontoA >= pontoD){
+
+            resultadoFinal = 'Mensagem A';
+            valorResultadoFinal = 'A'
+
+        }else if(pontoB >= pontoA && pontoB >= pontoC && pontoB >= pontoD){
+
+            resultadoFinal = 'Mensagem B';
+            valorResultadoFinal = 'B';
+
+        }else if(pontoC >= pontoA && pontoC >= pontoB && pontoC >= pontoD){
+
+            resultadoFinal = 'Mensagem C';
+            valorResultadoFinal = 'C';
+
+        }else if(pontoD >= pontoA && pontoD >= pontoB && pontoD >= pontoC){
+
+            resultadoFinal = 'Mensagem D';
+            valorResultadoFinal = 'D'
+            
+        }
+
+
+        resultado.innerHTML = `${resultadoFinal}`;
+
+        var temporizador = 10;
+
+        setTimeout(() => {
+            timer.innerHTML = `${temporizador --}`
+            window.location = "dashboard.html";
+          }, "10000");
+
+
+          fetch(`/quiz/cadastrar/`, { method: "POST", headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+              resultadoServer: resultadoFinal,
+              valorFinalServer: valorResultadoFinal,
+              usuarioServer: sessionStorage.ID_USUARIO
+          })}).then(function (resposta) {
+              if (resposta.ok) {
+                  resposta.json().then(function (resposta) {
+                      console.log(`Resultado inserido com sucesso!`);
+                  });
+              } else {
+                  console.error('Nenhum dado encontrado ou erro na API');
+              }
+          })
+          .catch(function (error) {
+              console.error(`Erro na inserção do resultado: ${error}`);
+          });
+      
+      
+
+    }
+
+    function reiniciarQuiz(){
+
+        indexQuestaoAtual = 0;
+        numeroQuestao = 1;
+        pontoA = 0;
+        pontoB = 0;
+        pontoC = 0;
+        pontoD = 0;
+
+        comecarQuiz();
+        document.getElementById('finalQuestoes').style.display = 'none';
+        document.getElementById('blocoQuestoes').style.display = 'block';
+
+    }
+
+
+    function redirecionarDashboard(){
+
+
+       
+    }
+
+
+
+
 </script>

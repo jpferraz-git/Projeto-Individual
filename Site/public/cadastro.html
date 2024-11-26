@@ -15,7 +15,7 @@
 
         <div class="form-box login">
             <h2>CADASTRO</h2>
-                <form>
+                <div>
                     <div class="input-box">
                         <input type="text" id="input_nome" required>
                         <label for="">USERNAME</label>
@@ -44,7 +44,7 @@
                             <p>Já possui uma conta? <a href="login.html">Entre</a></p>
                     </div>
 
-                </form>
+                  </div>
             
             </div>
             <div class="info-content login">
@@ -107,9 +107,6 @@
 
         if (resposta.ok) {
           cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";

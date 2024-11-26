@@ -16,7 +16,7 @@
         </div>
         <div class="form-box login">
             <h2>LOGIN</h2>
-                <form>
+                <div>
                     <div class="input-box">
                         <input type="text" id="input_email"required>
                         <label for="">EMAIL</label>
@@ -28,14 +28,14 @@
                         <i class='bx bxs-lock' ></i>
                     </div>
                     <div class="input-box">
-                            <button class="btn" type="submit" onclick="entrar()">Login</button>
+                            <button class="btn" type="button" onclick="entrar()">Login</button>
                     </div>
 
                     <div class="regi-link">
                             <p>Ainda não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
                     </div>
 
-                </form>
+                </div>
             
             </div>
 
@@ -53,23 +53,23 @@
    
     function entrar() {
         //aguardar();
-
+    
         var emailVar = input_email.value;
         var senhaVar = input_senha.value;
-
+    
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            mensagem_erro.innerHTML = "Preencha todos os campos";
             finalizarAguardar();
             return false;
         }
         else {
             setInterval(sumirMensagem, 5000)
         }
-
+    
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
-
+    
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
@@ -81,10 +81,10 @@
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
-
+    
             if (resposta.ok) {
                 console.log(resposta);
-
+    
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
@@ -93,30 +93,33 @@
                     sessionStorage.ID_USUARIO = json.id;
     
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "quiz/quiz.html";
                     }, 1000); // apenas para exibir o loading
-
+    
                 });
-
+    
             } else {
-
+                cardErro.style.display = "block";
+                mensagem_erro.innerHTML =
+            "E-mail ou senha errados";0
                 console.log("Houve um erro ao tentar realizar o login!");
-
+    
                 resposta.text().then(texto => {
                     console.error(texto);
                     finalizarAguardar(texto);
                 });
             }
-
+    
         }).catch(function (erro) {
             console.log(erro);
         })
-
+    
         return false;
     }
-
+    
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
+
 
 </script>

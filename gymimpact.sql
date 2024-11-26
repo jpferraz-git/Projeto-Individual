@@ -9,11 +9,23 @@ email varchar (100),
 senha varchar(100)
 );
 
+create table quiz(
+idQuiz int primary key auto_increment,
+resultado varchar(100)
+);
 
+
+show tables;
+
+truncate table usuario;
 
 select * from usuario;
 
 use aquatech;
+
+select * from usuario;
+
+use gasbusters;
 
 select * from usuario;
 
