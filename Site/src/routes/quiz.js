@@ -7,16 +7,18 @@ router.post("/cadastrar", function (req, res) {
     quizController.cadastrar(req, res);
 });
 
-router.post("/primeiraKPI", function (req, res) {
+router.get("/primeiraKPI", function (req, res) {
     quizController.primeiraKPI(req, res);
 });
 
-router.post("/segundaKPI", function (req, res) {
+router.get("/segundaKPI", function (req, res) {
     quizController.segundaKPI(req, res);
 });
-router.post("/terceiraKPI", function (req, res) {
+
+router.get("/terceiraKPI", function (req, res) {
     quizController.terceiraKPI(req, res);
 });
+
 
 
 module.exports = router;

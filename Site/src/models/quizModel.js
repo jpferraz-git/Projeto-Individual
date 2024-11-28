@@ -18,7 +18,7 @@ function primeiraKPI() {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        select resultado as result from quiz where idQuiz = 2;
+        SELECT count(resultado) AS result FROM quiz;
     `;
 
 
@@ -26,25 +26,33 @@ function primeiraKPI() {
     return database.executar(instrucaoSql);
 }
 
-function segundaKPI(resultado, valorFinal) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", resultado, valorFinal);
+function segundaKPI() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        select resultado from quiz;
+    select resultado as ultimoResultado from quiz order by idQuiz desc limit 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function terceiraKPI(resultado, valorFinal) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", resultado, valorFinal);
+function terceiraKPI() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        select resultado from quiz;
+
+        select case when resultado like 'A' then 'Abacaxi'
+        when resultado like 'B' then 'Batata'
+        when resultado like 'C' then 'Cenoura' 
+        when resultado like 'D' then 'Damasco'
+        else 'none'
+        end as maiorResultado, count(resultado) as qtdResult 
+        from quiz group by maiorResultado order by qtdResult desc limit 1;
+
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -55,4 +63,4 @@ module.exports = {
     segundaKPI,
     terceiraKPI,
     cadastrar
-};
+}

@@ -6,10 +6,10 @@
     <title>Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="./dashboard.css">
-
+    <link rel="icon" href="./assets/logo_branca.png">
 
 </head>
-<body onload="primeiraKPI()">
+<body onload="primeiraKPI(), segundaKPI(), terceiraKPI(), mostrarDataHora(), grafico()">
     
     <div class="container">
         <aside>
@@ -79,7 +79,7 @@
                             <div class="middle">
                                 <h3>Seu último resultado</h3>
                                 <div class="progress">
-                
+                                    <b id="resultado_ultimo_kpi"></b>
                                 </div>
                             </div>
                     
@@ -90,7 +90,7 @@
                             <div class="middle">
                                 <h3>Total de respostas</h3>
                                 <div class="progress">
-                
+                                    <b id="resultado_3"></b>
                                 </div>
                             </div>
                     
@@ -114,6 +114,8 @@
 </html>
 
 <script>
+
+    function grafico(){
  
     const ctx = document.getElementById('myChart');
 
@@ -137,9 +139,10 @@
     }
 });
 
-
+    }
  
     //BLOCO DE DATA E HORA
+    function mostrarDataHora(){
     var tempo = document.getElementById("horaAtual");
 
     setInterval(() => {
@@ -149,14 +152,17 @@
     
     }, 1000)
 
-    function primeiraKPI() {
+}
+
+    
+      function primeiraKPI() {
         fetch(`/quiz/primeiraKPI/`, { method: 'GET' })
           .then(function (response) {
             if (response.ok) {
               response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
       
-                resultado_maior_frequencia.innerHTML = `${resposta.resul}`; console.log("AAAAAAAAAA")
+                resultado_maior_frequencia.innerHTML = `${resposta.result}`
       
               });
             } else {
@@ -168,6 +174,44 @@
           });
       }
       
+function segundaKPI(){
 
+    fetch(`/quiz/segundaKPI/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          resultado_ultimo_kpi.innerHTML = `${resposta.ultimoResultado}`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
+
+function terceiraKPI(){
+
+    fetch(`/quiz/terceiraKPI/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          resultado_3.innerHTML = `${resposta.maiorResultado}`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
 
 </script>
