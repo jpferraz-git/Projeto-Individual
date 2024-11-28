@@ -280,17 +280,13 @@ main .sales,.expenses,.income{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-left: 10rem;
     height: 100%;
 }
 
 main .middle{
 
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    margin-bottom: 12px;
+    
 
 }
 main .insights > div{
@@ -303,7 +299,7 @@ main .insights > div{
 
 }
 
-main .insights > div span{
+main .insights  div span{
 
     background: coral;
     padding: 0.5rem;
@@ -317,9 +313,8 @@ main .insights > div span{
 
 main .insights h3{
 
-    margin: 1rem 0 0.6rem;
     font-size: 1rem;
-    padding-left: 40px;
+    padding-left: 10px;
 }
 
 main .insights .progress{
@@ -331,19 +326,14 @@ main .insights .progress{
 
 }
 
-main .insights svg{
 
-    width: 7rem;
-    height: 7rem;
+main .divisao_kpi{
 
-}
-
-main .middle{
-
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 main .insights .progress .number{

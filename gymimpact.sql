@@ -19,7 +19,7 @@ select * from quiz;
 show tables;
 
 truncate table usuario;
-
+truncate table quiz;
 select * from usuario;
 
 
