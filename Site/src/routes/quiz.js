@@ -19,6 +19,10 @@ router.get("/terceiraKPI", function (req, res) {
     quizController.terceiraKPI(req, res);
 });
 
+router.get("/gerarGrafico", function (req, res) {
+    quizController.gerarGrafico(req, res);
+});
+
 
 
 module.exports = router;

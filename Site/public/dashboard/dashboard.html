@@ -7,9 +7,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="./dashboard.css">
     <link rel="icon" href="./assets/logo_branca.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-<body onload="primeiraKPI(), segundaKPI(), terceiraKPI(), mostrarDataHora(), grafico()">
+<body onload="primeiraKPI(), segundaKPI(), terceiraKPI(), gerarGrafico(), mostrarDataHora()">
     
     <div class="container">
         <aside>
@@ -42,7 +43,7 @@
                     <span class="material-symbols-sharp">forum</span>
                     <h3>Blog de Relatos</h3>
                 </a>
-                <a href="index.html" class="active">
+                <a href="../index.html" class="active">
                     <span class="material-symbols-sharp">keyboard_return</span>
                     <h3>Retornar ao Site</h3>
                 </a>
@@ -65,10 +66,11 @@
                 <div class="insights">
                         <div class="sales">
                             <span class="material-symbols-sharp">monitoring</span>
+                            <h3>Resultado com maior frequência</h3> 
                             <div class="middle">
-                                <h3>Resultado com maior frequência</h3>
-                                <b id="resultado_maior_frequencia"></b>
+                                 
                                 <div class="progress">
+                                  <b id="resultado_maior_frequencia">aa</b>
                                 </div>
                             </div>
                     
@@ -76,8 +78,9 @@
                       
                         <div class="expenses">
                             <span class="material-symbols-sharp">monitoring</span>
+                            <h3>Seu último resultado</h3>
                             <div class="middle">
-                                <h3>Seu último resultado</h3>
+                                
                                 <div class="progress">
                                     <b id="resultado_ultimo_kpi"></b>
                                 </div>
@@ -87,8 +90,9 @@
                        
                         <div class="income">
                             <span class="material-symbols-sharp">monitoring</span>
+                            <h3>Total de respostas</h3>
                             <div class="middle">
-                                <h3>Total de respostas</h3>
+             
                                 <div class="progress">
                                     <b id="resultado_3"></b>
                                 </div>
@@ -115,31 +119,161 @@
 
 <script>
 
-    function grafico(){
- 
-    const ctx = document.getElementById('myChart');
-
-    new Chart (ctx, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5],
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
+    function gerarGrafico(){
+      fetch(`/quiz/gerarGrafico/`, { method: 'GET' })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+  
+  
+            plotarGrafico(resposta);
+          });
+        } else {
+          console.error('Nenhum dado encontrado ou erro na API');
         }
-    }
-});
+      })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+      });
 
     }
+
+    function plotarGrafico(resposta) {
+
+      console.log('iniciando plotagem do gráfico...');
+    
+    
+      let labels = ["MA", "MB", "MC", "MD"];
+    
+    
+      let dados = {
+        labels: labels,
+        datasets: [
+          {
+            label: 'MA',
+            data: [],
+            backgroundColor: 'rgba(102, 204, 178, 0.8)', 
+            borderColor: 'rgba(102, 204, 178, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'MB',
+            data: [],
+            backgroundColor: 'rgba(102, 153, 255, 0.8)', 
+            borderColor: 'rgba(102, 153, 255, 1)', 
+            borderWidth: 1
+          },
+          {
+            label: 'MC',
+            data: [],
+            backgroundColor: 'rgba(155, 102, 204, 0.8)',
+            borderColor: 'rgba(155, 102, 204, 1)', 
+            borderWidth: 1
+          },
+          {
+            label: 'MD',
+            data: [],
+            backgroundColor: 'rgba(208, 94, 168, 0.8)', 
+            borderColor: 'rgba(208, 94, 168, 1)',
+            borderWidth: 1
+            
+          }
+        ]
+      };
+    
+      console.log('----------------------------------------------')
+      console.log('Estes dados foram recebidos pela funcao "gerarGrafico" e passados para "plotarGrafico":')
+      console.log(resposta)
+    
+      for (var i = 0; i < resposta.length; i++) {
+        var dadoAtual = resposta[i];
+        var labelIndex = labels.indexOf(dadoAtual.resultados);
+    
+        if(labelIndex == -1){
+
+          labelIndex = 1;
+        }
+
+        dados.datasets[labelIndex].data.push(dadoAtual.Quantidade);
+
+      }
+    
+      console.log("Dados finais para plotagem:");
+      console.log(dados);
+    
+      console.log('----------------------------------------------')
+      console.log('O gráfico será plotado com os respectivos valores:')
+      console.log('Labels:')
+      console.log(labels)
+      console.log('Dados:')
+      console.log(dados.datasets)
+      console.log('----------------------------------------------')
+    
+      const config = {
+        type: 'bar',
+        data: dados,
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              labels: {
+                color: '#FFFFFF',
+                font: {
+                  size: 14,
+                },
+              },
+            },
+            title: {
+              display: true,
+              text: 'Resultados Gerais',
+              color: '#FFFFFF',
+              font: {
+                size: 25,
+                weight: 'bold',
+              },
+              padding: {
+                top: 10,
+                bottom: 20,
+              },
+            },
+          },
+          scales: {
+            x: {
+              stacked: true, 
+              ticks: {
+                color: '#FFFFFF',
+                font: {
+                  size: 16,
+                },
+              },
+              grid: {
+                display: false, 
+              },
+            },
+            y: {
+              ticks: {
+                color: '#FFFFFF',
+                font: {
+                  size: 14,
+                },
+              },
+              grid: {
+                color: 'rgba(255, 255, 255, 0.2)',
+              },
+            },
+          },
+          barPercentage: 0.3, 
+          categoryPercentage: 0.8, 
+        },
+      };
+    
+      let myChart = new Chart(
+        document.getElementById(`myChart`),config);
+    
+    }
+    
+    
  
     //BLOCO DE DATA E HORA
     function mostrarDataHora(){
