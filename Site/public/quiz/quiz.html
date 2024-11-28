@@ -20,7 +20,7 @@
             </div>
             <div class="sidebar">
                 <div id="barra"></div>
-                <a href="#">
+                <a href="../dashboard/dashboard.html">
                     <span class="material-symbols-sharp">bar_chart_4_bars</span>
                     <h3>Dashboard</h3>
                     <!-- <select>DASHBOARD
@@ -71,7 +71,7 @@
     <div id="finalQuestoes">
         <h1>Você finalizou as Perguntas</h1>
         <h1>Seu resultado foi <b id="resultado">s</b></h1>
-        <h1>Você será redirecionado para a dashbaord em <b id="timer"></b> segundos</h1>
+        <h1>Você será redirecionado para a dashbaord em <b id="timer">10</b> segundos</h1>
         <button onclick="redirecionarDashboard()">ir para Dashboard</button>
         <button onclick="reiniciarQuiz()">Deseja fazer novamente? </button>
     </div>
@@ -251,12 +251,21 @@
 
         resultado.innerHTML = `${resultadoFinal}`;
 
-        var temporizador = 10;
+        var temporizador = 9;
+    
+        
+        setInterval(() =>{
+            
+            timer.innerHTML = temporizador;
+            temporizador --;
+    
+            if(temporizador == -1){
+    
+                return window.location = "../dashboard/dashboard.html";
+            }
+        
+        }, 1000);
 
-        setTimeout(() => {
-            timer.innerHTML = `${temporizador --}`
-            window.location = "dashboard.html";
-          }, "10000");
 
 
           fetch(`/quiz/cadastrar/`, { method: "POST", headers: {"Content-Type": "application/json"},
@@ -296,12 +305,12 @@
 
     }
 
-
     function redirecionarDashboard(){
 
-
-       
+        window.location = "../dashboard/dashboard.html";
+  
     }
+
 
 
 

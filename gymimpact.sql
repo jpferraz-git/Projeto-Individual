@@ -14,18 +14,15 @@ idQuiz int primary key auto_increment,
 resultado varchar(100)
 );
 
-
+use gymimpact;
+select * from quiz;
 show tables;
 
 truncate table usuario;
 
 select * from usuario;
 
-use aquatech;
 
-select * from usuario;
 
-use gasbusters;
 
-select * from usuario;
 

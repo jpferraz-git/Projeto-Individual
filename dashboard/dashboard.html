@@ -67,6 +67,7 @@
                             <span class="material-symbols-sharp">monitoring</span>
                             <div class="middle">
                                 <h3>Resultado com maior frequência</h3>
+                                <b id="resultado_maior_frequencia"></b>
                                 <div class="progress">
                                 </div>
                             </div>
@@ -148,5 +149,24 @@
     
     }, 1000)
 
+    function primeiraKPI() {
+        fetch(`/quiz/kpiQuantidadeResultados/`, { method: 'GET' })
+          .then(function (response) {
+            if (response.ok) {
+              response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+      
+                resultado_maior_frequencia.innerHTML = `${resposta}`;
+      
+              });
+            } else {
+              console.error('Nenhum dado encontrado ou erro na API');
+            }
+          })
+          .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+          });
+      }
+      
 
 </script>
