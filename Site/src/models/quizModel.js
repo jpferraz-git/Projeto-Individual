@@ -19,7 +19,14 @@ function primeiraKPI() {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        SELECT count(resultado) AS result FROM quiz;
+      
+          select case when resultado like 'A' then 'Abacaxi'
+        when resultado like 'B' then 'Batata'
+        when resultado like 'C' then 'Cenoura' 
+        when resultado like 'D' then 'Damasco'
+        else 'none'
+        end as maiorResultado, count(resultado) as qtdResult 
+        from quiz group by maiorResultado order by qtdResult desc limit 1;
     `;
 
 
@@ -45,14 +52,8 @@ function terceiraKPI() {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-
-        select case when resultado like 'A' then 'Abacaxi'
-        when resultado like 'B' then 'Batata'
-        when resultado like 'C' then 'Cenoura' 
-        when resultado like 'D' then 'Damasco'
-        else 'none'
-        end as maiorResultado, count(resultado) as qtdResult 
-        from quiz group by maiorResultado order by qtdResult desc limit 1;
+        
+    select count(resultado) as result from quiz limit 1;
 
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="supino.css">
+    <link rel="icon" href="../assets/logo_branca.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="log">
+                    <img src="../assets/logo_branca.png">
+                    <h2>GYM <span class="danger">IMPACT</span></h2>
+                </div>
+
+            </div>
+            <div class="sidebar">
+                <div id="barra"></div>
+                <a href="#">
+                    <span class="material-symbols-sharp">bar_chart_4_bars</span>
+                    <h3>Dashboard</h3>
+                    <!-- <select>DASHBOARD
+                        <option value="perguntas">Perguntas</option>
+                        <option value="supino_game">Supino Gaming</option>
+                    </select> --> 
+                </a>
+                <a href="#">
+                    <span class="material-symbols-sharp">fitness_center</span>
+                    <h3>Supino Gaming</h3>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-sharp">list</span>
+                    <h3>Formulário</h3>
+                </a>
+                <a href="#">
+                    <span class="material-symbols-sharp">forum</span>
+                    <h3>Blog de Relatos</h3>
+                </a>
+                <a href="../index.html" class="active">
+                    <span class="material-symbols-sharp">keyboard_return</span>
+                    <h3>Retornar ao Site</h3>
+                </a>
+        
+            </div>
+        </aside>
+        <div class="comecarJogo" id="startGame">
+        <button id="btn_clique" onclick="comecarJogo()">Começar Jogo</button>
+        </div>
+
+        <div id="game" style="display: none;">
+            <h1>AJUDE PINGUS A EVOLUIR NO TREINO</h1>
+            <h1>CADA CLIQUE É UMA REPETIÇÃO</h1>
+            <div class="contador_supino">
+            <img src="../assets/workout-gym.gif">
+                <div class="contador_clique">
+                <a>CLIQUES</a>
+                <a id="mostrarCliques">0</a> 
+                </div>
+
+            
+            <div class="barra_tempo">
+                <a>TEMPO</a>
+                <span id="segundo_1" style="background-color:#1360c5 ; display:none;"></span>
+                <span id="segundo_2" style="background-color:#176ec8 ; display:none;"></span>
+                <span id="segundo_3" style="background-color: #1a7bcc; display:none;"></span>
+                <span id="segundo_4" style="background-color: #1e89cf; display:none;"></span>
+                <span id="segundo_5" style="background-color: #2297d3; display:none;"></span>
+                <span id="segundo_6" style="background-color: #26a4d6; display:none;"></span>
+                <span id="segundo_7" style="background-color: #2ab2da; display:none;"></span>
+                <span id="segundo_8" style="background-color: #2ec0dd; display:none;"></span>
+                <span id="segundo_9" style="background-color: #31cde1; display:none;"></span>
+                <span id="segundo_10" style="background-color: #35dbe4;  display:none;"></span>
+                <a id="tempo"></a>
+                
+            </div>
+            
+            </div>
+        <div class="finalJogo">
+            <a>PARABÉNS, VOCÊ AJUDOU PINGU A FAZER <a id="repeticoes"></a> REPETIÇÕES</a>
+            
+
+        </div>
+    
+    </div>
+ 
+    </div>
+    </body>
+
+
+<script>
+
+    var qtdCliques = 0;
+
+
+    function comecarJogo(){
+
+        document.getElementById('startGame').style.display = 'none';
+        document.getElementById('game').style.display = 'flex';
+        contarCliques();
+
+    }
+
+    function contarCliques(){
+    
+
+        if(qtdCliques == 0){
+
+            contarTempo();
+        }
+
+        // Atualiza o valor exibido na tela
+        function atualizarContador() {
+          document.getElementById('mostrarCliques').textContent = qtdCliques;
+        }
+        
+        // Adiciona um evento de teclado para capturar a barra de espaço
+        document.addEventListener('keydown', (event) => {
+          if (event.code === 'Space') { // Verifica se a tecla pressionada é a barra de espaço
+            event.preventDefault();
+            qtdCliques++; // Incrementa o valor do contador
+            atualizarContador(); // Atualiza o valor na tela
+          }
+        });
+      
+   
+    }
+
+    var valorSegundo1 = 0;
+    var valorSegundo2 = 0;
+    var valorSegundo3 = 0;
+    var valorSegundo4 = 0;
+    var valorSegundo5 = 0;
+    var valorSegundo6 = 0;
+    var valorSegundo7 = 0;
+    var valorSegundo8 = 0;
+    var valorSegundo9 = 0;
+    var valorSegundo10 = 0;
+
+
+    function contarTempo(){
+
+        var temporizador = 11;
+        var intervalo = setInterval(() =>{
+
+            temporizador --;
+
+            tempo.innerHTML = temporizador;
+
+            if(temporizador == 0){
+
+                clearInterval(intervalo)
+                return mostrarTelaFinal();
+            }
+
+            if(temporizador == 10){
+
+                document.getElementById('segundo_1').style.display = 'flex'
+                valorSegundo10 = qtdCliques;
+
+            }else if(temporizador == 9){
+                 document.getElementById('segundo_2').style.display = 'flex'
+                valorSegundo9 = qtdCliques;
+            
+            }else if(temporizador == 8){
+                 document.getElementById('segundo_3').style.display = 'flex'
+                valorSegundo8 = qtdCliques;
+
+            }else if(temporizador == 7){
+                 document.getElementById('segundo_4').style.display = 'flex'
+                valorSegundo7 = qtdCliques;
+
+            }else if(temporizador == 6){
+                 document.getElementById('segundo_5').style.display = 'flex'
+                valorSegundo6 = qtdCliques;
+
+            }else if(temporizador == 5){
+                 document.getElementById('segundo_6').style.display = 'flex'
+                valorSegundo5 = qtdCliques;
+
+            }else if(temporizador == 4){
+                 document.getElementById('segundo_7').style.display = 'flex'
+                valorSegundo4 = qtdCliques;
+
+            }else if(temporizador == 3){
+                 document.getElementById('segundo_8').style.display = 'flex'
+                valorSegundo3 = qtdCliques;
+            
+            }else if(temporizador == 2){
+                 document.getElementById('segundo_9').style.display = 'flex'
+                valorSegundo2 = qtdCliques;
+
+            }else if(temporizador == 1){
+                 document.getElementById('segundo_10').style.display = 'flex'
+                valorSegundo1 = qtdCliques;
+
+            }
+
+
+        }, 1000)
+
+    }
+
+    function mostrarTelaFinal(){
+
+
+
+    }
+
+</script>
