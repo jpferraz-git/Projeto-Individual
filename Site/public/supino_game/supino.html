@@ -11,45 +11,47 @@
 
 </head>
 
-    <div class="container">
-        <aside>
-            <div class="top">
-                <div class="log">
-                    <img src="../assets/logo_branca.png">
-                    <h2>GYM <span class="danger">IMPACT</span></h2>
-                </div>
+<body onload="plotarGrafico()">
+<div class="container">
+    <aside>
+        <div class="top">
+            <div class="log">
+                <img src="../assets/logo_branca.png">
+                <h2>GYM <span class="danger">IMPACT</span></h2>
+            </div>
 
-            </div>
-            <div class="sidebar">
-                <div id="barra"></div>
-                <a href="#">
-                    <span class="material-symbols-sharp">bar_chart_4_bars</span>
-                    <h3>Dashboard</h3>
-                    <!-- <select>DASHBOARD
-                        <option value="perguntas">Perguntas</option>
-                        <option value="supino_game">Supino Gaming</option>
-                    </select> --> 
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">fitness_center</span>
-                    <h3>Supino Gaming</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">list</span>
-                    <h3>Formulário</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-sharp">forum</span>
-                    <h3>Blog de Relatos</h3>
-                </a>
-                <a href="../index.html" class="active">
-                    <span class="material-symbols-sharp">keyboard_return</span>
-                    <h3>Retornar ao Site</h3>
-                </a>
-        
-            </div>
-        </aside>
-        <div class="comecarJogo" id="startGame">
+        </div>
+        <div class="sidebar">
+            <div id="barra"></div>
+            <a href="../dashboard/dashboard.html">
+                <span class="material-symbols-sharp">bar_chart_4_bars</span>
+                <h3>Dashboard</h3>
+                <!-- <select>DASHBOARD
+                    <option value="perguntas">Perguntas</option>
+                    <option value="supino_game">Supino Gaming</option>
+                </select> --> 
+            </a>
+            <a href="../supino_game/supino.html">
+                <span class="material-symbols-sharp">fitness_center</span>
+                <h3>Supino Gaming</h3>
+            </a>
+            <a href="../quiz/quiz.html">
+                <span class="material-symbols-sharp">list</span>
+                <h3>Formulário</h3>
+            </a>
+            <a href="#">
+                <span class="material-symbols-sharp">forum</span>
+                <h3>Blog de Relatos</h3>
+            </a>
+            <a href="../index.html" class="active">
+                <span class="material-symbols-sharp">keyboard_return</span>
+                <h3>Retornar ao Site</h3>
+            </a>
+    
+        </div>
+    </aside>
+
+        <div class="comecarJogo" id="startGame" style="display:none;">
         <button id="btn_clique" onclick="comecarJogo()">Começar Jogo</button>
         </div>
 
@@ -57,43 +59,216 @@
             <h1>AJUDE PINGUS A EVOLUIR NO TREINO</h1>
             <h1>CADA CLIQUE É UMA REPETIÇÃO</h1>
             <div class="contador_supino">
-            <img src="../assets/workout-gym.gif">
-                <div class="contador_clique">
-                <a>CLIQUES</a>
-                <a id="mostrarCliques">0</a> 
-                </div>
+                <img src="../assets/workout-gym.gif">
+                    <div class="contador_clique">
+                    <a>CLIQUES</a>
+                    <a id="mostrarCliques">0</a> 
+                    </div>
 
             
             <div class="barra_tempo">
                 <a>TEMPO</a>
-                <span id="segundo_1" style="background-color:#1360c5 ; display:none;"></span>
-                <span id="segundo_2" style="background-color:#176ec8 ; display:none;"></span>
-                <span id="segundo_3" style="background-color: #1a7bcc; display:none;"></span>
-                <span id="segundo_4" style="background-color: #1e89cf; display:none;"></span>
-                <span id="segundo_5" style="background-color: #2297d3; display:none;"></span>
-                <span id="segundo_6" style="background-color: #26a4d6; display:none;"></span>
-                <span id="segundo_7" style="background-color: #2ab2da; display:none;"></span>
-                <span id="segundo_8" style="background-color: #2ec0dd; display:none;"></span>
-                <span id="segundo_9" style="background-color: #31cde1; display:none;"></span>
-                <span id="segundo_10" style="background-color: #35dbe4;  display:none;"></span>
+                <div class="cores_tempo">
+                    <span id="segundo_0" style="background: transparent;"></span>
+                    <span id="segundo_1" style="background-color:#1360c5 ; display:none;"></span>
+                    <span id="segundo_2" style="background-color:#176ec8 ; display:none;"></span>
+                    <span id="segundo_3" style="background-color: #1a7bcc; display:none;"></span>
+                    <span id="segundo_4" style="background-color: #1e89cf; display:none;"></span>
+                    <span id="segundo_5" style="background-color: #2297d3; display:none;"></span>
+                    <span id="segundo_6" style="background-color: #26a4d6; display:none;"></span>
+                    <span id="segundo_7" style="background-color: #2ab2da; display:none;"></span>
+                    <span id="segundo_8" style="background-color: #2ec0dd; display:none;"></span>
+                    <span id="segundo_9" style="background-color: #31cde1; display:none;"></span>
+                    <span id="segundo_10" style="background-color: #35dbe4;  display:none;"></span>
+                    <span id="segundo_11" style="background-color: #21e2ec;  display:none;"></span>
+                </div>
                 <a id="tempo"></a>
                 
             </div>
             
             </div>
-        <div class="finalJogo">
+
+    </div>
+
+    <div class="titulo_hora" style="display: none;">
+        <div id="titulo">
+        <h1>Dashboard</h1>
+     
+        </div>
+        <div id="data_e_hora">
+        <h1 id="horaAtual">00:00:00</h1>
+        
+    </div>
+   </div>
+
+    
+    <main id="main">
+        
+        <div class="graphBox">
             <a>PARABÉNS, VOCÊ AJUDOU PINGU A FAZER <a id="repeticoes"></a> REPETIÇÕES</a>
             
-
+        <button onclick="">Tentar Novamente</button>
+            <div class="box">
+                <canvas id="myChart" width="80%" height="60%"></canvas>
+            </div>
         </div>
+
+         <div class="insights">
+            <button onclick="">Ver Dash</button>
+             <div class="divisao_kpi">
+                 <div class="sales">
+                    <span class="material-symbols-sharp">
+                        percent
+                        </span>
+                     <h3>Média de cliques</h3> 
+                   
+                   </div>
+                     <div class="middle">
+                       <b id="resultado_maior_frequencia">aa</b>
+                     
+                 </div>
+                 </div>
+                 <div class="divisao_kpi">
+                 <div class="expenses">
+                    <span class="material-symbols-sharp">
+                        trending_up
+                        </span>
+                     <h3>Total de Cliques</h3>
+                
+             
+                 </div>
+                 <div class="middle">
+                   <b id="resultado_ultimo_kpi"></b>
+                 </div>
+               </div>
+                
+                 <div class="divisao_kpi">
+                 <div class="income">
+                    <span class="material-symbols-sharp">
+                        timer_10_alt_1
+                        </span>
+                     <h3>Maior Picos por Segundo</h3>
+             
+                 </div>
+                 <div class="middle">
+                   <b id="resultado_3"></b>
+           </div>
+         </div>
+         </div>
+
+  
+
+ </main>
+</div>
     
-    </div>
- 
     </div>
     </body>
 
 
 <script>
+
+
+
+    function plotarGrafico() {
+
+        console.log('iniciando plotagem do gráfico...');
+      
+      
+        let barras = ["S1", "S2", "S3", "S4", "S5",
+        "S6", "S7", "S8", "S9", "S10"];
+      
+      
+        let dados = {
+          labels: barras,
+          datasets: [
+            {
+            label: 'CLIQUES',
+              data: [0,0,0,0, 10, 60, 50, 11, 34, 65, 23],
+              backgroundColor: 'rgb(33, 226, 236)', 
+              borderColor: 'rgb(33, 226, 236)'
+            },
+    
+          ]
+        };
+      
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "gerarGrafico" e passados para "plotarGrafico":')
+      
+        console.log("Dados finais para plotagem:");
+        console.log(dados);
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(barras)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+      
+        const config = {
+          type: 'line',
+          data: dados,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                labels: {
+                  color: '#FFFFFF',
+                  font: {
+                    size: 14,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: 'Cliques Por Segundo',
+                color: '#FFFFFF',
+                font: {
+                  size: 25,
+                  weight: 'bold',
+                },
+                padding: {
+                  top: 10,
+                  bottom: 20,
+                },
+              },
+            },
+            scales: {
+              x: {
+                stacked: true, 
+                ticks: {
+                  color: '#FFFFFF',
+                  font: {
+                    size: 16,
+                  },
+                },
+                grid: {
+                  display: false, 
+                },
+              },
+              y: {
+                ticks: {
+                  color: '#FFFFFF',
+                  font: {
+                    size: 14,
+                  },
+                },
+                grid: {
+                  color: 'rgba(255, 255, 255, 0.5)',
+                },
+              },
+            },
+    
+            
+            
+          },
+        };
+      
+        let myChart = new Chart(
+          document.getElementById(`myChart`),config);
+      
+      }
+      
+
 
     var qtdCliques = 0;
 
@@ -121,7 +296,7 @@
         
         // Adiciona um evento de teclado para capturar a barra de espaço
         document.addEventListener('keydown', (event) => {
-          if (event.code === 'Space') { // Verifica se a tecla pressionada é a barra de espaço
+          if (event.code == 'Space') { // Verifica se a tecla pressionada é a barra de espaço
             event.preventDefault();
             qtdCliques++; // Incrementa o valor do contador
             atualizarContador(); // Atualiza o valor na tela
@@ -143,73 +318,184 @@
     var valorSegundo10 = 0;
 
 
+    var intervaloSegundo10 = 0;
+    var intervaloSegundo9 = 0;
+    var intervaloSegundo8 = 0;
+    var intervaloSegundo7 = 0;
+    var intervaloSegundo6 = 0;
+    var intervaloSegundo5 = 0;
+    var intervaloSegundo4 = 0;
+    var intervaloSegundo3 = 0;
+    var intervaloSegundo2 = 0;
+    var intervaloSegundo1 = 0;
+    
+
     function contarTempo(){
 
         var temporizador = 11;
-        var intervalo = setInterval(() =>{
-
-            temporizador --;
-
+        var ultimoValor = 0; // Rastreia os cliques do intervalo anterior
+        var intervalo = setInterval(() => {
+            temporizador--;
+        
             tempo.innerHTML = temporizador;
-
-            if(temporizador == 0){
-
-                clearInterval(intervalo)
+        
+            if (temporizador == -1) {
+                clearInterval(intervalo);
                 return mostrarTelaFinal();
             }
+        
+            var valorAtual = qtdCliques; // Captura o valor total de cliques no momento
+            var intervaloAtual = valorAtual - ultimoValor; // Calcula os cliques no intervalo atual
+            ultimoValor = valorAtual; // Atualiza o valor acumulado para o próximo intervalo
+        
+            // Atualiza os valores com base no temporizador
+            if (temporizador == 10) {
+                document.getElementById('segundo_0').style.display = 'none';
+                document.getElementById('segundo_1').style.display = 'flex';
+                valorSegundo10 = valorAtual;
+                intervaloSegundo10 = intervaloAtual;
 
-            if(temporizador == 10){
+            } else if (temporizador == 9) {
+               
+                document.getElementById('segundo_2').style.display = 'flex';
+                valorSegundo9 = valorAtual;
+                intervaloSegundo9 = intervaloAtual;
 
-                document.getElementById('segundo_1').style.display = 'flex'
-                valorSegundo10 = qtdCliques;
+            } else if (temporizador == 8) {
+                
+                document.getElementById('segundo_3').style.display = 'flex';
+                valorSegundo8 = valorAtual;
+                intervaloSegundo8 = intervaloAtual;
 
-            }else if(temporizador == 9){
-                 document.getElementById('segundo_2').style.display = 'flex'
-                valorSegundo9 = qtdCliques;
-            
-            }else if(temporizador == 8){
-                 document.getElementById('segundo_3').style.display = 'flex'
-                valorSegundo8 = qtdCliques;
+            } else if (temporizador == 7) {
+               
+                document.getElementById('segundo_4').style.display = 'flex';
+                valorSegundo7 = valorAtual;
+                intervaloSegundo7 = intervaloAtual;
 
-            }else if(temporizador == 7){
-                 document.getElementById('segundo_4').style.display = 'flex'
-                valorSegundo7 = qtdCliques;
+            } else if (temporizador == 6) {
+                
+                document.getElementById('segundo_5').style.display = 'flex';
+                valorSegundo6 = valorAtual;
+                intervaloSegundo6 = intervaloAtual;
 
-            }else if(temporizador == 6){
-                 document.getElementById('segundo_5').style.display = 'flex'
-                valorSegundo6 = qtdCliques;
+            } else if (temporizador == 5) {
+                
+                document.getElementById('segundo_6').style.display = 'flex';
+                valorSegundo5 = valorAtual;
+                intervaloSegundo5 = intervaloAtual;
 
-            }else if(temporizador == 5){
-                 document.getElementById('segundo_6').style.display = 'flex'
-                valorSegundo5 = qtdCliques;
+            } else if (temporizador == 4) {
+                
+                document.getElementById('segundo_7').style.display = 'flex';
+                valorSegundo4 = valorAtual;
+                intervaloSegundo4 = intervaloAtual;
 
-            }else if(temporizador == 4){
-                 document.getElementById('segundo_7').style.display = 'flex'
-                valorSegundo4 = qtdCliques;
+            } else if (temporizador == 3) {
+                
+                document.getElementById('segundo_8').style.display = 'flex';
+                valorSegundo3 = valorAtual;
+                intervaloSegundo3 = intervaloAtual;
 
-            }else if(temporizador == 3){
-                 document.getElementById('segundo_8').style.display = 'flex'
-                valorSegundo3 = qtdCliques;
-            
-            }else if(temporizador == 2){
-                 document.getElementById('segundo_9').style.display = 'flex'
-                valorSegundo2 = qtdCliques;
+            } else if (temporizador == 2) {
+                
+                document.getElementById('segundo_9').style.display = 'flex';
+                valorSegundo2 = valorAtual;
+                intervaloSegundo2 = intervaloAtual;
 
-            }else if(temporizador == 1){
-                 document.getElementById('segundo_10').style.display = 'flex'
-                valorSegundo1 = qtdCliques;
+            } else if (temporizador == 1) {
+                
+                document.getElementById('segundo_10').style.display = 'flex';
+                valorSegundo1 = valorAtual;
+                intervaloSegundo1 = intervaloAtual;
 
-            }
+            } else if (temporizador == 0) {
+                
+                document.getElementById('segundo_11').style.display = 'flex';
 
-
+            } 
+        
         }, 1000)
 
     }
 
     function mostrarTelaFinal(){
 
-
+        document.getElementById('finalJogo').style.display = 'block';
+        document.getElementById('game').style.display = 'none'
+        document.getElementById('main').style.display = 'flex'
+        cadastrar();
+        repeticoes.innerHTML = qtdCliques
 
     }
 
+    function cadastrar() {
+        // aguardar();
+    
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+    
+        // Verificando se há algum campo em branco
+
+        // Enviando o valor da nova input
+        fetch("/supino/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            valorSegundo1Server: valorSegundo1,
+            valorSegundo2Server: valorSegundo2,
+            valorSegundo3Server: valorSegundo3,
+            valorSegundo4Server: valorSegundo4,
+            valorSegundo5Server: valorSegundo5,
+            valorSegundo6Server: valorSegundo6,
+            valorSegundo7Server: valorSegundo7,
+            valorSegundo8Server: valorSegundo8,
+            valorSegundo9Server: valorSegundo9,
+            valorSegundo10Server: valorSegundo10,
+
+            qtdCliquesServer: qtdCliques,
+
+            intervaloSegundo1Server: intervaloSegundo1,
+            intervaloSegundo2Server: intervaloSegundo2,
+            intervaloSegundo3Server: intervaloSegundo3,
+            intervaloSegundo4Server: intervaloSegundo4,
+            intervaloSegundo5Server: intervaloSegundo5,
+            intervaloSegundo6Server: intervaloSegundo6,
+            intervaloSegundo7Server: intervaloSegundo7,
+            intervaloSegundo8Server: intervaloSegundo8,
+            intervaloSegundo9Server: intervaloSegundo9,
+            intervaloSegundo10Server: intervaloSegundo10,
+
+
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+    
+            if (resposta.ok) {
+ 
+    
+              setTimeout(() => {
+       
+              }, "2000");
+    
+              limparFormulario();
+              finalizarAguardar();
+            } else {
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+          });
+    
+        return false;
+      }
+    
+    
 </script>

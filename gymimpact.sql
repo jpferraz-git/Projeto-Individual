@@ -11,12 +11,41 @@ senha varchar(100)
 
 create table quiz(
 idQuiz int primary key auto_increment,
-resultado varchar(100)
+resultado varchar(100),
+horaResultado DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+create table supinoGame (
+    idGame int primary key auto_increment,
+    intervalo1 int,
+    intervalo2 int,
+    intervalo3 int,
+    intervalo4 int,
+    intervalo5 int,
+    intervalo6 int,
+    intervalo7 int,
+    intervalo8 int,
+    intervalo9 int,
+    intervalo10 int,
+    cliques int,
+    segundo1 int,
+    segundo2 int,
+    segundo3 int,
+    segundo4 int,
+    segundo5 int,
+    segundo6 int,
+    segundo7 int,
+    segundo8 int,
+    segundo9 int,
+    segundo10 int
+);
+select max(greatest(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10)) as maior_valor
+from supinoGame;
+select * from supinoGame;
 use gymimpact;
 select * from quiz;
 show tables;
+   select count(resultado) as maiorResultado from quiz limit 1;
 
 truncate table usuario;
 truncate table quiz;

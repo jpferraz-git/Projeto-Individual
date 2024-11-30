@@ -18,6 +18,7 @@ var app = express();
 var usuarioRouter = require("./src/routes/usuarios");
 var medidasRouter = require("./src/routes/medidas");
 var quizRouter = require("./src/routes/quiz");
+var supinoRouter = require("./src/routes/supino")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -28,6 +29,7 @@ app.use(cors());
 app.use("/usuarios", usuarioRouter);
 app.use("/medidas", medidasRouter);
 app.use("/quiz", quizRouter);
+app.use("/supino", supinoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
