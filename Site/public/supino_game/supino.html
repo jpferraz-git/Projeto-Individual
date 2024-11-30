@@ -11,7 +11,7 @@
 
 </head>
 
-<body onload="plotarGrafico()">
+<body>
 <div class="container">
     <aside>
         <div class="top">
@@ -51,7 +51,7 @@
         </div>
     </aside>
 
-        <div class="comecarJogo" id="startGame" style="display:none;">
+        <div class="comecarJogo" id="startGame">
         <button id="btn_clique" onclick="comecarJogo()">Começar Jogo</button>
         </div>
 
@@ -102,7 +102,7 @@
    </div>
 
     
-    <main id="main">
+    <main id="main" style="display: none;">
         
         <div class="graphBox">
             <a>PARABÉNS, VOCÊ AJUDOU PINGU A FAZER <a id="repeticoes"></a> REPETIÇÕES</a>
@@ -120,11 +120,11 @@
                     <span class="material-symbols-sharp">
                         percent
                         </span>
-                     <h3>Média de cliques</h3> 
+                     <h3>Média de Cliques por Segundo </h3> 
                    
                    </div>
                      <div class="middle">
-                       <b id="resultado_maior_frequencia">aa</b>
+                       <b id="media_cliques">aa</b>
                      
                  </div>
                  </div>
@@ -138,7 +138,7 @@
              
                  </div>
                  <div class="middle">
-                   <b id="resultado_ultimo_kpi"></b>
+                   <b id="total_cliques"></b>
                  </div>
                </div>
                 
@@ -147,11 +147,11 @@
                     <span class="material-symbols-sharp">
                         timer_10_alt_1
                         </span>
-                     <h3>Maior Picos por Segundo</h3>
+                     <h3>Maior Pico por Segundo</h3>
              
                  </div>
                  <div class="middle">
-                   <b id="resultado_3"></b>
+                   <b id="pico_clique"></b>
            </div>
          </div>
          </div>
@@ -167,108 +167,7 @@
 
 <script>
 
-
-
-    function plotarGrafico() {
-
-        console.log('iniciando plotagem do gráfico...');
-      
-      
-        let barras = ["S1", "S2", "S3", "S4", "S5",
-        "S6", "S7", "S8", "S9", "S10"];
-      
-      
-        let dados = {
-          labels: barras,
-          datasets: [
-            {
-            label: 'CLIQUES',
-              data: [0,0,0,0, 10, 60, 50, 11, 34, 65, 23],
-              backgroundColor: 'rgb(33, 226, 236)', 
-              borderColor: 'rgb(33, 226, 236)'
-            },
     
-          ]
-        };
-      
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "gerarGrafico" e passados para "plotarGrafico":')
-      
-        console.log("Dados finais para plotagem:");
-        console.log(dados);
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(barras)
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-      
-        const config = {
-          type: 'line',
-          data: dados,
-          options: {
-            responsive: true,
-            plugins: {
-              legend: {
-                labels: {
-                  color: '#FFFFFF',
-                  font: {
-                    size: 14,
-                  },
-                },
-              },
-              title: {
-                display: true,
-                text: 'Cliques Por Segundo',
-                color: '#FFFFFF',
-                font: {
-                  size: 25,
-                  weight: 'bold',
-                },
-                padding: {
-                  top: 10,
-                  bottom: 20,
-                },
-              },
-            },
-            scales: {
-              x: {
-                stacked: true, 
-                ticks: {
-                  color: '#FFFFFF',
-                  font: {
-                    size: 16,
-                  },
-                },
-                grid: {
-                  display: false, 
-                },
-              },
-              y: {
-                ticks: {
-                  color: '#FFFFFF',
-                  font: {
-                    size: 14,
-                  },
-                },
-                grid: {
-                  color: 'rgba(255, 255, 255, 0.5)',
-                },
-              },
-            },
-    
-            
-            
-          },
-        };
-      
-        let myChart = new Chart(
-          document.getElementById(`myChart`),config);
-      
-      }
-      
-
 
     var qtdCliques = 0;
 
@@ -339,7 +238,7 @@
         
             tempo.innerHTML = temporizador;
         
-            if (temporizador == -1) {
+            if (temporizador === -1) {
                 clearInterval(intervalo);
                 return mostrarTelaFinal();
             }
@@ -421,12 +320,8 @@
 
     function mostrarTelaFinal(){
 
-        document.getElementById('finalJogo').style.display = 'block';
-        document.getElementById('game').style.display = 'none'
-        document.getElementById('main').style.display = 'flex'
         cadastrar();
-        repeticoes.innerHTML = qtdCliques
-
+        window.location = "dashboard_supino.html";
     }
 
     function cadastrar() {

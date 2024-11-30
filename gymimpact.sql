@@ -17,6 +17,7 @@ horaResultado DATETIME DEFAULT CURRENT_TIMESTAMP
 
 create table supinoGame (
     idGame int primary key auto_increment,
+    horaResultado DATETIME DEFAULT CURRENT_TIMESTAMP,
     intervalo1 int,
     intervalo2 int,
     intervalo3 int,
@@ -39,10 +40,30 @@ create table supinoGame (
     segundo9 int,
     segundo10 int
 );
+
+use gymimpact;
 select max(greatest(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10)) as maior_valor
 from supinoGame;
 select * from supinoGame;
-use gymimpact;
+
+select cliques as totalCliques from supinoGame order by idGame desc limit 1;
+
+select truncate(cliques / 10, 2) as mediaCliques from supinoGame order by idGame desc limit 1; 
+
+     SELECT 
+    intervalo10 AS S10,
+    intervalo9 AS S9,
+    intervalo8 AS S8,
+    intervalo7 AS S7,
+    intervalo6 AS S6,
+    intervalo5 AS S5,
+    intervalo4 AS S4,
+    intervalo3 AS S3,
+    intervalo2 AS S2,
+    intervalo1 AS S1
+    FROM supinoGame order by idGame desc limit 1;
+    
+    
 select * from quiz;
 show tables;
    select count(resultado) as maiorResultado from quiz limit 1;

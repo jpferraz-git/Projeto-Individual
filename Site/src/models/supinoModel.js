@@ -38,13 +38,7 @@ function primeiraKPI() {
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
       
-          select case when resultado like 'A' then 'Abacaxi'
-        when resultado like 'B' then 'Batata'
-        when resultado like 'C' then 'Cenoura' 
-        when resultado like 'D' then 'Damasco'
-        else 'none'
-        end as maiorResultado, count(resultado) as qtdResult 
-        from quiz group by maiorResultado order by qtdResult desc limit 1;
+          select truncate(cliques / 10, 2) as mediaCliques from supinoGame order by idGame desc limit 1; 
     `;
 
 
@@ -58,7 +52,7 @@ function segundaKPI() {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-    select resultado as ultimoResultado from quiz order by idQuiz desc limit 1;
+    select cliques as totalCliques from supinoGame order by idGame desc limit 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -71,7 +65,7 @@ function terceiraKPI() {
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         
-    select greatest(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10) as maior_valor
+    select max(greatest(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10)) as maiorPico
     from supinoGame;
 
     `
@@ -79,20 +73,41 @@ function terceiraKPI() {
     return database.executar(instrucaoSql);
 }
 
-function gerarGrafico(req, res) {
+function gerarGrafico() {
 
     // Passe os valores como parâmetro e vá para o arquivo supinoModel.js
-    supinoModel.gerarGrafico().then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar o resultado do quiz.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql = `
+       SELECT 
+    intervalo10 AS I10,
+    intervalo9 AS I9,
+    intervalo8 AS I8,
+    intervalo7 AS I7,
+    intervalo6 AS I6,
+    intervalo5 AS I5,
+    intervalo4 AS I4,
+    intervalo3 AS I3,
+    intervalo2 AS I2,
+    intervalo1 AS I1,
+    segundo10 AS S10,
+    segundo9 AS S9,
+    segundo8 AS S8,
+    segundo7 AS S7,
+    segundo6 AS S6,
+    segundo5 AS S5,
+    segundo4 AS S4,
+    segundo3 AS S3,
+    segundo2 AS S2,
+    segundo1 AS S1
+    FROM supinoGame order by idGame desc limit 1;
+    `
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
 }
 
 

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard_supino.css">
+    <link rel="icon" href="../assets/logo_branca.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body onload="primeiraKPI(), segundaKPI(), terceiraKPI(), gerarGrafico()">
+<div class="container">
+    <aside>
+        <div class="top">
+            <div class="log">
+                <img src="../assets/logo_branca.png">
+                <h2>GYM <span class="danger">IMPACT</span></h2>
+            </div>
+
+        </div>
+        <div class="sidebar">
+            <div id="barra"></div>
+            <a href="../dashboard/dashboard.html">
+                <span class="material-symbols-sharp">bar_chart_4_bars</span>
+                <h3>Dashboard</h3>
+                <!-- <select>DASHBOARD
+                    <option value="perguntas">Perguntas</option>
+                    <option value="supino_game">Supino Gaming</option>
+                </select> --> 
+            </a>
+            <a href="../supino_game/supino.html">
+                <span class="material-symbols-sharp">fitness_center</span>
+                <h3>Supino Gaming</h3>
+            </a>
+            <a href="../quiz/quiz.html">
+                <span class="material-symbols-sharp">list</span>
+                <h3>Formulário</h3>
+            </a>
+            <a href="#">
+                <span class="material-symbols-sharp">forum</span>
+                <h3>Blog de Relatos</h3>
+            </a>
+            <a href="../index.html" class="active">
+                <span class="material-symbols-sharp">keyboard_return</span>
+                <h3>Retornar ao Site</h3>
+            </a>
+    
+        </div>
+    </aside>
+  
+    <main id="main">
+        
+        <div class="graphBox">
+            <a>PARABÉNS, VOCÊ AJUDOU PINGU A FAZER <a id="repeticoes"></a> REPETIÇÕES</a>
+            
+        <button onclick="">Tentar Novamente</button>
+            <div class="box">
+                <canvas id="myChart" width="80%" height="60%"></canvas>
+            </div>
+        </div>
+
+         <div class="insights">
+            <button onclick="">Ver Dash</button>
+             <div class="divisao_kpi">
+                 <div class="sales">
+                    <span class="material-symbols-sharp">
+                        percent
+                        </span>
+                     <h3>Média de Cliques por Segundo </h3> 
+                   
+                   </div>
+                     <div class="middle">
+                       <b id="media_cliques">aa</b>
+                     
+                 </div>
+                 </div>
+                 <div class="divisao_kpi">
+                 <div class="expenses">
+                    <span class="material-symbols-sharp">
+                        trending_up
+                        </span>
+                     <h3>Total de Cliques</h3>
+                
+             
+                 </div>
+                 <div class="middle">
+                   <b id="total_cliques"></b>
+                 </div>
+               </div>
+                
+                 <div class="divisao_kpi">
+                 <div class="income">
+                    <span class="material-symbols-sharp">
+                        timer_10_alt_1
+                        </span>
+                     <h3>Maior Pico por Segundo</h3>
+             
+                 </div>
+                 <div class="middle">
+                   <b id="pico_clique"></b>
+           </div>
+         </div>
+         </div>
+
+  
+
+ </main>
+</div>
+    
+    </div>
+    </body>
+<script>
+
+   
+    
+    function gerarGrafico(){
+        fetch(`/supino/gerarGrafico/`, { method: 'GET' })
+        .then(function (response) {
+          if (response.ok) {
+            response.json().then(function (resposta) {
+              console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    
+    
+              plotarGrafico(resposta);
+            });
+          } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+          }
+        })
+        .catch(function (error) {
+          console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+        });
+  
+      }
+
+
+    function plotarGrafico(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+      
+      
+        let barras = ["S1", "S2", "S3", "S4", "S5",
+        "S6", "S7", "S8", "S9", "S10"];
+      
+      
+        let dados = {
+          labels: barras,
+          datasets: [
+            {
+            label: 'Cliques Crescentes',
+              data: [],
+              backgroundColor: 'rgb(33, 226, 236)', 
+              borderColor: 'rgb(33, 226, 236)'
+            },
+            {
+            label: 'Cliques em Cada Segundo',
+              data: [],
+              backgroundColor: 'rgb(19, 96, 197)', 
+              borderColor: 'rgb(19, 96, 197)'
+            },
+    
+          ]
+        };
+
+        for (let i = 0; i < resposta.length; i++) {
+            var dadoAtual = resposta[i];
+          
+            dados.datasets[0].data.push(dadoAtual.I10);
+            dados.datasets[0].data.push(dadoAtual.I9);
+            dados.datasets[0].data.push(dadoAtual.I8);
+            dados.datasets[0].data.push(dadoAtual.I7);
+            dados.datasets[0].data.push(dadoAtual.I6);
+            dados.datasets[0].data.push(dadoAtual.I5);
+            dados.datasets[0].data.push(dadoAtual.I4);
+            dados.datasets[0].data.push(dadoAtual.I3);
+            dados.datasets[0].data.push(dadoAtual.I2);
+            dados.datasets[0].data.push(dadoAtual.I1);
+
+            dados.datasets[1].data.push(dadoAtual.S10);
+            dados.datasets[1].data.push(dadoAtual.S9);
+            dados.datasets[1].data.push(dadoAtual.S8);
+            dados.datasets[1].data.push(dadoAtual.S7);
+            dados.datasets[1].data.push(dadoAtual.S6);
+            dados.datasets[1].data.push(dadoAtual.S5);
+            dados.datasets[1].data.push(dadoAtual.S4);
+            dados.datasets[1].data.push(dadoAtual.S3);
+            dados.datasets[1].data.push(dadoAtual.S2);
+            dados.datasets[1].data.push(dadoAtual.S1);
+         
+        }
+    
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "gerarGrafico" e passados para "plotarGrafico":')
+      
+        console.log("Dados finais para plotagem:");
+        console.log(dados);
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(barras)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+      
+        const config = {
+          type: 'line',
+          data: dados,
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                labels: {
+                  color: '#FFFFFF',
+                  font: {
+                    size: 14,
+                  },
+                },
+              },
+              title: {
+                display: true,
+                text: 'Cliques Por Segundo',
+                color: '#FFFFFF',
+                font: {
+                  size: 25,
+                  weight: 'bold',
+                },
+                padding: {
+                  top: 10,
+                  bottom: 20,
+                },
+              },
+            },
+            scales: {
+              x: {
+                stacked: true, 
+                ticks: {
+                  color: '#FFFFFF',
+                  font: {
+                    size: 16,
+                  },
+                },
+                grid: {
+                  display: false, 
+                },
+              },
+              y: {
+                ticks: {
+                  color: '#FFFFFF',
+                  font: {
+                    size: 14,
+                  },
+                },
+                grid: {
+                  color: 'rgba(255, 255, 255, 0.5)',
+                },
+              },
+            },
+    
+            
+            
+          },
+        };
+      
+        let myChart = new Chart(
+          document.getElementById(`myChart`),config);
+      
+      }
+      
+
+      function primeiraKPI() {
+        fetch(`/supino/primeiraKPI/`, { method: 'GET' })
+          .then(function (response) {
+            if (response.ok) {
+              response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+      
+                media_cliques.innerHTML = `${resposta.mediaCliques}`
+      
+              });
+            } else {
+              console.error('Nenhum dado encontrado ou erro na API');
+            }
+          })
+          .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+          });
+      }
+      
+function segundaKPI(){
+
+    fetch(`/supino/segundaKPI/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          total_cliques.innerHTML = `${resposta.totalCliques}`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
+
+function terceiraKPI(){
+
+    fetch(`/supino/terceiraKPI/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          pico_clique.innerHTML = `${resposta.maiorPico}`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
+
+</script>
