@@ -90,7 +90,6 @@ function kpiMediaCliquesTop2(req, res) {
     });
 }
 
-// Copiando e adaptando para Top 3
 
 function kpiTop3(req, res){
     dashSupinoModel.kpiTop3().then(function (resultado) {
@@ -134,21 +133,21 @@ function kpiMediaCliquesTop3(req, res) {
     });
 }
         
-function gerarGrafico2(req, res) {
 
-// Passe os valores como parâmetro e vá para o arquivo dashSupinoModel.js
-dashSupinoModel.gerarGrafico().then(function (resultado) {
-    if (resultado.length > 0) {
-        res.status(200).json(resultado);
-    } else {
-        res.status(204).send("Nenhum resultado encontrado!")
+function plotarLeaderboard(req, res) {
+    // Passe os valores como parâmetro e vá para o arquivo dashSupinoModel.js
+    dashSupinoModel.plotarLeaderboard().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar o resultado do quiz.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
     }
-}).catch(function (erro) {
-    console.log(erro);
-    console.log("Houve um erro ao buscar o resultado do quiz.", erro.sqlMessage);
-    res.status(500).json(erro.sqlMessage);
-});
-}
 
 module.exports = {
     
@@ -161,6 +160,7 @@ module.exports = {
     kpiTop1,
     kpiTop2,
     kpiTop3,
-    gerarGrafico2,
+  
+    plotarLeaderboard
 
 }

@@ -36,11 +36,11 @@ router.get("/kpiCliquesTop3", function (req, res) {
   });
   
 router.get("/kpiMediaCliquesTop3", function (req, res) {
-dashSupinoController.kpiMediaCliquesTop3(req, res);
+  dashSupinoController.kpiMediaCliquesTop3(req, res);
   });
 
-  router.get("/gerarGrafico2", function (req, res) {
-    supinoController.gerarGrafico2(req, res);
+  router.get("/plotarLeaderboard", function (req, res) {
+  dashSupinoController.plotarLeaderboard(req, res);
   });
 
 module.exports = router;

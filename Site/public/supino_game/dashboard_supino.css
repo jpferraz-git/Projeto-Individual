@@ -491,6 +491,20 @@ main .insights .progress .number{
 
 }
 
+.graphBox2{
+    position: relative;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.graphBox2 .box{
+  
+    width: 100%;
+    border-radius: 20px;
+    background: #222;
+
+}
+
 .lideres{
 
     display: flex;
@@ -500,7 +514,7 @@ main .insights .progress .number{
     width: 85vw;
     padding-top: 2rem;
     padding-left: 6rem;
-  
+    margin-right: 2rem;
 }
 
 table{
@@ -515,7 +529,8 @@ table{
 
 table thead{
 
-    opacity: 0.5;
+    font-size: 1.5rem;
+
 }
 
 table td{

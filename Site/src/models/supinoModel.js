@@ -111,11 +111,13 @@ function gerarGrafico() {
 }
 
 
+
 module.exports = {
     cadastrar,
     primeiraKPI,
     segundaKPI,
     terceiraKPI,
-    gerarGrafico
+    gerarGrafico,
+    
 
 }

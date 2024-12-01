@@ -24,7 +24,7 @@ function kpiCliquesTop2() {
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
 
-    select cliques as cliquesTop2 from supinoGame order by cliques desc limit  1 offset 1;
+    select cliques as cliquesTop2 from supinoGame order by cliques desc limit 1 offset 1;
 
 
     `;
@@ -114,7 +114,7 @@ function kpiTop2() {
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         
-       select nome as totalCliquesTop1 from usuario join supinoGame o
+       select nome as totalCliquesTop2 from usuario join supinoGame o
 	    on fkUsuario = id_usuario where cliques = (select cliques from supinoGame 
         order by cliques desc limit 1 offset 1) ;
 
@@ -131,9 +131,9 @@ function kpiTop3() {
     var instrucaoSql = `
         
     
-      select nome as totalCliquesTop1 from usuario join supinoGame o
+      select nome as totalCliquesTop3 from usuario join supinoGame o
 	    on fkUsuario = id_usuario where cliques = (select cliques from supinoGame 
-        order by cliques desc limit 1 offset 2) ;
+        order by cliques desc limit 1 offset 2);
 
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -177,6 +177,21 @@ function gerarGrafico2() {
 
 }
 
+function plotarLeaderboard() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql = `
+        
+      select nome as totalCliquesTop1 from usuario join supinoGame o
+	    on fkUsuario = id_usuario where cliques = (select cliques from supinoGame 
+        order by cliques desc limit 1 offset 2) ;
+
+    `
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
 
@@ -190,6 +205,7 @@ module.exports = {
     kpiTop2,
     kpiTop3,
     gerarGrafico2,
+    plotarLeaderboard
 
 
 }

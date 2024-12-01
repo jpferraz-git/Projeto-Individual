@@ -11,7 +11,8 @@
 
 </head>
 
-<body onload="primeiraKPI(), segundaKPI(), terceiraKPI(), gerarGrafico()">
+<body onload="primeiraKPI(), segundaKPI(), terceiraKPI(), gerarGrafico(), kpiCliquesTop1(), kpiCliquesTop2(), kpiCliquesTop3(), kpiMediaCliquesTop1(), kpiMediaCliquesTop2(),
+kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3()">
 <div class="container">
     <aside>
         <div class="top">
@@ -129,23 +130,23 @@
             </thead>
             <tbody>
                 <tr>
-                <td id="nome_top1">Larissa</td>
-                <td id="cliques_top1">230</td>
-                <td id="media_top1">50</td>
+                <td id="totalCliquesTop1"></td>
+                <td id="cliquesTop1"></td>
+                <td id="mediaCliquesTop1"></td>
                 </tr>
                 <tr>
-                <td id="nome_top2">Larissa</td>
-                <td id="cliques_top2">230</td>
-                <td id="media_top2">50</td>
+                <td id="totalCliquesTop2"></td>
+                <td id="cliquesTop2"></td>
+                <td id="mediaCliquesTop2"></td>
                 </tr>
                 <tr>
-                <td id="nome_top3">Larissa</td>
-                <td id="cliques_top3">230</td>
-                <td id="media_top3">50</td>
+                <td id="totalCliquesTop3"></td>
+                <td id="cliquesTop3"></td>
+                <td id="mediaCliquesTop3"></td>
                 </tr>
             </tbody>
         </table>
-        <div class="graphBox">
+        <div class="graphBox2">
             <div class="box">
                 <canvas id="myChart2" width="80%" height="20%"></canvas>
             </div>
@@ -491,5 +492,185 @@ function voltarDashboard(){
     document.getElementById('main').style.display = 'flex';
     document.getElementById('leaderboard').style.display = 'none';
 }
+
+
+      function kpiCliquesTop1() {
+        fetch(`/dashSupino/kpiCliquesTop1/`, { method: 'GET' })
+          .then(function (response) {
+            if (response.ok) {
+              response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+      
+                cliquesTop1.innerHTML = `<b>${resposta.cliquesTop1}</b>`
+      
+              });
+            } else {
+              console.error('Nenhum dado encontrado ou erro na API');
+            }
+          })
+          .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+          });
+      }
+      
+  function kpiCliquesTop2(){
+
+    fetch(`/dashSupino/kpiCliquesTop2/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          cliquesTop2.innerHTML = `<b>${resposta.cliquesTop2}</b>`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
+
+function kpiCliquesTop3(){
+
+    fetch(`/dashSupino/kpiCliquesTop3/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          cliquesTop3.innerHTML = `<b>${resposta.cliquesTop3}</b>`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
+
+    function kpiMediaCliquesTop1() {
+        fetch(`/dashSupino/kpiMediaCliquesTop1/`, { method: 'GET' })
+          .then(function (response) {
+            if (response.ok) {
+              response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+      
+                mediaCliquesTop1.innerHTML = `<b>${resposta.mediaCliquesTop1}</b>`
+      
+              });
+            } else {
+              console.error('Nenhum dado encontrado ou erro na API');
+            }
+          })
+          .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+          });
+      }
+      
+  function kpiMediaCliquesTop2(){
+
+    fetch(`/dashSupino/kpiMediaCliquesTop2/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          mediaCliquesTop2.innerHTML = `<b>${resposta.mediaCliquesTop2}</b>`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
+
+function kpiMediaCliquesTop3(){
+
+    fetch(`/dashSupino/kpiMediaCliquesTop3/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          mediaCliquesTop3.innerHTML = `<b>${resposta.mediaCliquesTop3}</b>`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
+
+
+    function kpiTop1() {
+        fetch(`/dashSupino/kpiTop1/`, { method: 'GET' })
+          .then(function (response) {
+            if (response.ok) {
+              response.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+      
+                totalCliquesTop1.innerHTML = `<b>1° </b> - <b>${resposta.totalCliquesTop1}</b>`
+      
+              });
+            } else {
+              console.error('Nenhum dado encontrado ou erro na API');
+            }
+          })
+          .catch(function (error) {
+            console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+          });
+      }
+      
+  function kpiTop2(){
+
+    fetch(`/dashSupino/kpiTop2/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          totalCliquesTop2.innerHTML = `<b>2° </b> - <b>${resposta.totalCliquesTop2}</b>`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
+
+function kpiTop3(){
+
+    fetch(`/dashSupino/kpiTop3/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+          totalCliquesTop3.innerHTML = `<b>3° </b> - <b>${resposta.totalCliquesTop3}</b>`
+
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+}
+
 
 </script>
