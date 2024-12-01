@@ -3,7 +3,7 @@ var database = require("../database/config");
 
 
 function cadastrar(intervalo1, intervalo2, intervalo3, intervalo4, intervalo5, intervalo6, intervalo7, intervalo8, intervalo9, intervalo10, cliques, 
-    segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10
+    segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10, id_usuario
  ) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
     
@@ -15,15 +15,15 @@ function cadastrar(intervalo1, intervalo2, intervalo3, intervalo4, intervalo5, i
             intervalo6, intervalo7, intervalo8, intervalo9, intervalo10, 
             cliques, 
             segundo1, segundo2, segundo3, segundo4, segundo5, 
-            segundo6, segundo7, segundo8, segundo9, segundo10
-        
+            segundo6, segundo7, segundo8, segundo9, segundo10, fkUsuario
             )  VALUES (
               
             ${intervalo1}, ${intervalo2}, ${intervalo3}, ${intervalo4}, ${intervalo5}, 
             ${intervalo6}, ${intervalo7}, ${intervalo8}, ${intervalo9}, ${intervalo10}, 
             ${cliques}, 
             ${segundo1}, ${segundo2}, ${segundo3}, ${segundo4}, ${segundo5}, 
-            ${segundo6}, ${segundo7}, ${segundo8}, ${segundo9}, ${segundo10}
+            ${segundo6}, ${segundo7}, ${segundo8}, ${segundo9}, ${segundo10}, 
+            ${id_usuario}
         );
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -65,8 +65,8 @@ function terceiraKPI() {
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
         
-    select max(greatest(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10)) as maiorPico
-    from supinoGame;
+    select greatest(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10) as maiorPico
+    from supinogame order by idGame desc limit 1;
 
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

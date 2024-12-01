@@ -3,7 +3,7 @@ create database gymimpact;
 use gymimpact;
 
 create table Usuario(
-idUsuario int primary key auto_increment,
+id_usuario int primary key auto_increment,
 nome varchar(100),
 email varchar (100),
 senha varchar(100)
@@ -12,8 +12,11 @@ senha varchar(100)
 create table quiz(
 idQuiz int primary key auto_increment,
 resultado varchar(100),
-horaResultado DATETIME DEFAULT CURRENT_TIMESTAMP
+horaResultado DATETIME DEFAULT CURRENT_TIMESTAMP,
+fkUsuario int,
+foreign key(fkUsuario) references Usuario(id_usuario)
 );
+
 
 create table supinoGame (
     idGame int primary key auto_increment,
@@ -38,12 +41,68 @@ create table supinoGame (
     segundo7 int,
     segundo8 int,
     segundo9 int,
-    segundo10 int
+    segundo10 int,
+    fkUsuario int,
+    foreign key(fkUsuario) references Usuario(id_usuario)
 );
 
-use gymimpact;
+
+select count(resultado) as resultadoA from quiz where resultado like 'A';
+
+ select 
+            (select count(resultado) from quiz where resultado like 'A') as resultadoA,
+            (select count(resultado) from quiz where resultado like 'B') as resultadoB,
+            (select count(resultado) from quiz where resultado like 'C') as resultadoC,
+            (select count(resultado) from quiz where resultado like 'D') as resultadoD;
+	
+    
+select nome as totalCliquesTop1 from usuario join supinoGame o
+	on fkUsuario = id_usuario where cliques = (select cliques
+from supinoGame
+order by cliques desc
+limit 1 offset 1) ;
+
+select * from supinoGame;
+
+
+SELECT nome AS totalCliquesTop1
+FROM usuario
+JOIN supinoGame ON fkUsuario = id_usuario
+GROUP BY nome
+ORDER BY MAX(cliques)
+LIMIT 1;
+
+select max(cliques) from supinoGame;
+
+select cliques
+from supinoGame
+order by cliques desc
+limit 1 offset 1;
+
+select cliques
+from supinoGame
+order by cliques desc
+limit 1 offset 2;
+
+select cliques from supinoGame;
+
+    select nome as totalCliquesTop1
+            from usuario join supinoGame on fkUsuario = idUsuario
+            group by nome order by max(cliques) limit 1 offset 1;
+		
+	
+	select truncate(avg(cliques) / 10, 2) as mediaCliquesTop1 from supinoGame
+	where cliques = (select cliques from supinoGame order by cliques desc limit 1 offset 1);	
+	
+    select max(cliques) from supinoGame limit 1 offset 1;
+    
+select greatest(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10) as maiorpico
+from supinogame order by idGame desc limit 1;
+
+    
 select max(greatest(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10)) as maior_valor
 from supinoGame;
+
 select * from supinoGame;
 
 select cliques as totalCliques from supinoGame order by idGame desc limit 1;

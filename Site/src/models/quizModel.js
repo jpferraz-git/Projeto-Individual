@@ -1,13 +1,13 @@
 
 var database = require("../database/config");
 
-function cadastrar(resultado, valorFinal) {
+function cadastrar(resultado, valorFinal, id_usuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", resultado, valorFinal);
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO quiz (resultado) VALUES ('${valorFinal}');
+        INSERT INTO quiz (resultado, fkUsuario) VALUES ('${valorFinal}', ${id_usuario});
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -65,14 +65,15 @@ function gerarGrafico(){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function gerarGrafico():");
 
     var instrucaoSql = `
-        select case when resultado like 'A' then 'A'
+     select case when resultado like 'A' then 'A'
         when resultado like 'B' then 'B'
         when resultado like 'C' then 'C' 
         when resultado like 'D' then 'D'
         else 'Sem resultado'
         end as resultados, count(resultado) as Quantidade
         from quiz 
-        group by resultado;`
+        group by resultado;
+            `
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

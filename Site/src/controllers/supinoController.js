@@ -27,12 +27,12 @@ function cadastrar(req, res) {
     var intervalo9 = req.body.intervaloSegundo9Server;
     var intervalo10 = req.body.intervaloSegundo10Server;
 
-
+    var id_usuario = req.body.usuarioServer;
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         supinoModel.cadastrar(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, 
             segundo9, segundo10, cliques, intervalo1, intervalo2, intervalo3, intervalo4, intervalo5, 
-            intervalo6, intervalo7, intervalo8, intervalo9, intervalo10
+            intervalo6, intervalo7, intervalo8, intervalo9, intervalo10, id_usuario
         )
             .then(
                 function (resultado) {

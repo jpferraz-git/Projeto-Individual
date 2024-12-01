@@ -146,36 +146,36 @@
       console.log('iniciando plotagem do gráfico...');
     
     
-      let barras = ["B", "A", "C", "D"];
+      let barras = ["A", "B", "C", "D"];
     
     
       let dados = {
         labels: barras,
         datasets: [
           {
-            label: 'B',
-            data: [0,0,0,0],
-            backgroundColor: 'rgba(102, 204, 178, 0.8)', 
-            borderColor: 'rgba(102, 204, 178, 1)',
+            label: 'A',
+            data: [],
+            backgroundColor: 'rgba(44, 62, 80)', 
+            borderColor: 'rgba(44, 62, 80)',
            
           },
           {
-            label: 'A',
-            data: [0,0,0,0],
-            backgroundColor: 'rgba(102, 153, 255, 0.8)', 
-            borderColor: 'rgba(102, 153, 255, 1)', 
+            label: 'B',
+            data: [],
+            backgroundColor: 'rgba(255, 87, 51)', 
+            borderColor: 'rgba(255, 87, 51)', 
           
           },
           {
             label: 'C',
-            data: [0,0,0,0],
-            backgroundColor: 'rgba(155, 102, 204, 0.8)',
-            borderColor: 'rgba(155, 102, 204, 1)', 
+            data: [],
+            backgroundColor: 'rgba(142, 68, 173)',
+            borderColor: 'rgba(142, 68, 173)', 
           
           },
           {
             label: 'D',
-            data: [0,0,0,0],
+            data: [],
             backgroundColor: 'rgba(208, 94, 168, 0.8)', 
             borderColor: 'rgba(208, 94, 168, 1)',
           
@@ -187,18 +187,13 @@
       console.log('----------------------------------------------')
       console.log('Estes dados foram recebidos pela funcao "gerarGrafico" e passados para "plotarGrafico":')
       console.log(resposta)
-    
+
       for (var i = 0; i < resposta.length; i++) {
-        var dadoAtual = resposta[i];
-        var labelIndex = barras.indexOf(dadoAtual.resultados); // Posição da label
-    
-          // Atualizar o valor correspondente na posição correta
-          dados.datasets.forEach((dataset, datasetIndex) => {
-            if (dataset.label === barras[labelIndex]) {
-              dataset.data[labelIndex] = dadoAtual.Quantidade;
-            }
-      });
-        }
+        var posicaoRespostaAtual = resposta[i];
+        var valorLabel = barras.indexOf(posicaoRespostaAtual.resultados); 
+        
+        dados.datasets[valorLabel].data[valorLabel] = posicaoRespostaAtual.Quantidade;
+      }
 
       
     
@@ -277,7 +272,6 @@
     
     
  
-    //BLOCO DE DATA E HORA
     function mostrarDataHora(){
     var tempo = document.getElementById("horaAtual");
 
@@ -288,7 +282,7 @@
     
     }, 1000)
 
-}
+    }
 
     
       function primeiraKPI() {

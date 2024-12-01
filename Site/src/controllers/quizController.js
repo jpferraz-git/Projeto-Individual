@@ -3,9 +3,10 @@ var quizModel = require("../models/quizModel");
 function cadastrar(req, res) {
     var valorFinal = req.body.valorFinalServer;
     var resultado = req.body.resultadoServer;
+    var id_usuario = req.body.usuarioServer;
 
         // Passe os valores como parâmetro e vá para o arquivo quizModel.js
-        quizModel.cadastrar(resultado, valorFinal)
+        quizModel.cadastrar(resultado, valorFinal, id_usuario)
             .then(
                 function (resultado) {
                     res.json(resultado);

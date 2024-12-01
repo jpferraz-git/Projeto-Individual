@@ -16,9 +16,9 @@ var HOST_APP = process.env.APP_HOST;
 var app = express();
 
 var usuarioRouter = require("./src/routes/usuarios");
-var medidasRouter = require("./src/routes/medidas");
 var quizRouter = require("./src/routes/quiz");
-var supinoRouter = require("./src/routes/supino")
+var supinoRouter = require("./src/routes/supino");
+var dashSupinoRouter = require("./src/routes/dash_supino")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -27,9 +27,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/usuarios", usuarioRouter);
-app.use("/medidas", medidasRouter);
 app.use("/quiz", quizRouter);
 app.use("/supino", supinoRouter);
+app.use("/dash_supino", dashSupinoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

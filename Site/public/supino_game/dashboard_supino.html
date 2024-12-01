@@ -63,7 +63,7 @@
         </div>
 
          <div class="insights">
-            <button onclick="">Ver Dash</button>
+            <button onclick="verLiderança()">Ver Liderança</button>
              <div class="divisao_kpi">
                  <div class="sales">
                     <span class="material-symbols-sharp">
@@ -108,14 +108,165 @@
   
 
  </main>
-</div>
-    
+
+    <div class="lideres" id="leaderboard" style="display: none;">
+        <button onclick="voltarDashboard()">Ver Seus Resultados</button>
+        <h1>Classificação</h1>
+        <table>
+            <thead>
+                <tr>
+                 
+                <td>
+                    Usuário
+                </td>
+                <td>
+                    Cliques Máximo
+                </td>
+                <td>
+                    Média Cliques
+                </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                <td id="nome_top1">Larissa</td>
+                <td id="cliques_top1">230</td>
+                <td id="media_top1">50</td>
+                </tr>
+                <tr>
+                <td id="nome_top2">Larissa</td>
+                <td id="cliques_top2">230</td>
+                <td id="media_top2">50</td>
+                </tr>
+                <tr>
+                <td id="nome_top3">Larissa</td>
+                <td id="cliques_top3">230</td>
+                <td id="media_top3">50</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="graphBox">
+            <div class="box">
+                <canvas id="myChart2" width="80%" height="20%"></canvas>
+            </div>
+        </div>
     </div>
+    
+
+
+        </div>
+        
+    
     </body>
 <script>
 
    
+    function plotarLeaderboard(){
+    let barras = ["B", "A", "C", "D"];
     
+    
+    let dados = {
+      labels: barras,
+      datasets: [
+        {
+          label: 'Seu Melhor Resultado',
+          data: [0,0,0,0],
+          backgroundColor: 'rgba(102, 204, 178, 0.8)', 
+          borderColor: 'rgba(102, 204, 178, 1)',
+         
+        },
+        {
+          label: 'Resultado do Líder',
+          data: [0,0,0,0],
+          backgroundColor: 'rgba(102, 153, 255, 0.8)', 
+          borderColor: 'rgba(102, 153, 255, 1)', 
+        
+        },
+    
+      ]
+    };
+  
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "gerarGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+  
+
+    
+  
+    console.log("Dados finais para plotagem:");
+    console.log(dados);
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(barras)
+    console.log('Dados:')
+    console.log(dados.datasets)
+    console.log('----------------------------------------------')
+  
+    const config = {
+      type: 'bar',
+      data: dados,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#FFFFFF',
+              font: {
+                size: 14,
+              },
+            },
+          },
+          title: {
+            display: true,
+            text: 'Resultados Gerais',
+            color: '#FFFFFF',
+            font: {
+              size: 25,
+              weight: 'bold',
+            },
+            padding: {
+              top: 10,
+              bottom: 20,
+            },
+          },
+        },
+        scales: {
+          x: {
+            stacked: true, 
+            ticks: {
+              color: '#FFFFFF',
+              font: {
+                size: 16,
+              },
+            },
+            grid: {
+              display: false, 
+            },
+          },
+          y: {
+            ticks: {
+              color: '#FFFFFF',
+              font: {
+                size: 14,
+              },
+            },
+            grid: {
+              color: 'rgba(255, 255, 255, 0.2)',
+            },
+          },
+        },
+        barPercentage: 0.3, 
+        categoryPercentage: 0.8, 
+      },
+    };
+  
+    let myChart = new Chart(
+      document.getElementById(`myChart2`),config);
+  
+  }
+  
+  
     function gerarGrafico(){
         fetch(`/supino/gerarGrafico/`, { method: 'GET' })
         .then(function (response) {
@@ -327,6 +478,18 @@ function terceiraKPI(){
     .catch(function (error) {
       console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
     });
+}
+
+function verLiderança(){
+
+    document.getElementById('main').style.display = 'none';
+    document.getElementById('leaderboard').style.display = 'flex';
+}
+
+function voltarDashboard(){
+
+    document.getElementById('main').style.display = 'flex';
+    document.getElementById('leaderboard').style.display = 'none';
 }
 
 </script>
