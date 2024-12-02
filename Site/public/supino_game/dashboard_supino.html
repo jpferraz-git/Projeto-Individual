@@ -12,7 +12,7 @@
 </head>
 
 <body onload="primeiraKPI(), segundaKPI(), terceiraKPI(), gerarGrafico(), kpiCliquesTop1(), kpiCliquesTop2(), kpiCliquesTop3(), kpiMediaCliquesTop1(), kpiMediaCliquesTop2(),
-kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3()">
+kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3(), gerarGrafico2()">
 <div class="container">
     <aside>
         <div class="top">
@@ -54,9 +54,7 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3()">
   
     <main id="main">
         
-        <div class="graphBox">
-            <a>PARABÉNS, VOCÊ AJUDOU PINGU A FAZER <a id="repeticoes"></a> REPETIÇÕES</a>
-            
+        <div class="graphBox">         
         <button onclick="">Tentar Novamente</button>
             <div class="box">
                 <canvas id="myChart" width="80%" height="60%"></canvas>
@@ -162,23 +160,44 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3()">
 <script>
 
    
-    function plotarLeaderboard(){
-    let barras = ["B", "A", "C", "D"];
+  
+  function gerarGrafico2(){
+    fetch(`/dashSupino/gerarGrafico2/`, { method: 'GET' })
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+
+          plotarLeaderboard(resposta);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+      }
+    })
+    .catch(function (error) {
+      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
+    });
+
+  }
+   
+    function plotarLeaderboard(resposta){
+    var barras = ["Seu Melhor Resultado", "Resultado do Líder"];
     
     
-    let dados = {
+    var dados = {
       labels: barras,
       datasets: [
         {
           label: 'Seu Melhor Resultado',
-          data: [0,0,0,0],
+          data: [],
           backgroundColor: 'rgba(102, 204, 178, 0.8)', 
           borderColor: 'rgba(102, 204, 178, 1)',
          
         },
         {
           label: 'Resultado do Líder',
-          data: [0,0,0,0],
+          data: [],
           backgroundColor: 'rgba(102, 153, 255, 0.8)', 
           borderColor: 'rgba(102, 153, 255, 1)', 
         
@@ -192,8 +211,12 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3()">
     console.log(resposta)
   
 
-    
+    for (var  i = 0; i < resposta.length; i++) {
+      var posicaoBarraAtual = resposta[i]
+
+      dados.datasets[i].data[i] = (posicaoBarraAtual.maior_clique);
   
+    }
     console.log("Dados finais para plotagem:");
     console.log(dados);
     console.log('----------------------------------------------')
@@ -262,7 +285,7 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3()">
       },
     };
   
-    let myChart = new Chart(
+    const myChart2 = new Chart(
       document.getElementById(`myChart2`),config);
   
   }
@@ -416,7 +439,7 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3()">
           },
         };
       
-        let myChart = new Chart(
+        const myChart = new Chart(
           document.getElementById(`myChart`),config);
       
       }

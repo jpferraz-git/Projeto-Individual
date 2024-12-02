@@ -99,9 +99,7 @@ function kpiTop1() {
     var instrucaoSql = `
         
      select nome as totalCliquesTop1 from usuario join supinoGame o
-	on fkUsuario = id_usuario where cliques = (select max(cliques) from supinoGame) ;
-
-
+	on fkUsuario = id_usuario where cliques = (select max(cliques) from supinoGame);
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -146,51 +144,30 @@ function gerarGrafico2() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
     
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
+    //  e na ordem de inserção dos dados. 
     var instrucaoSql = `
-       SELECT 
-    intervalo10 AS I10,
-    intervalo9 AS I9,
-    intervalo8 AS I8,
-    intervalo7 AS I7,
-    intervalo6 AS I6,
-    intervalo5 AS I5,
-    intervalo4 AS I4,
-    intervalo3 AS I3,
-    intervalo2 AS I2,
-    intervalo1 AS I1,
-    segundo10 AS S10,
-    segundo9 AS S9,
-    segundo8 AS S8,
-    segundo7 AS S7,
-    segundo6 AS S6,
-    segundo5 AS S5,
-    segundo4 AS S4,
-    segundo3 AS S3,
-    segundo2 AS S2,
-    segundo1 AS S1
-    FROM supinoGame order by idGame desc limit 1;
-    `
 
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-
-}
-
-function plotarLeaderboard() {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
-    
-    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-    //  e na ordem de inserção dos dados.
-    var instrucaoSql = `
+    SELECT
+    CASE
+        -- Retorna o maior clique geral se não for do usuário específico
+        WHEN fkUsuario is null THEN (SELECT MAX(cliques) FROM supinoGame)
         
-      select nome as totalCliquesTop1 from usuario join supinoGame o
-	    on fkUsuario = id_usuario where cliques = (select cliques from supinoGame 
-        order by cliques desc limit 1 offset 2) ;
+        -- Caso contrário, retorna o maior clique do usuário específico
+        ELSE (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 5)
+    END AS maior_clique
+FROM supinoGame
+WHERE fkUsuario = 2
+UNION ALL
+SELECT
+    (SELECT MAX(cliques) FROM supinoGame)
+AS maior_clique
+FROM DUAL limit 2;
 
     `
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
+
 }
 
 module.exports = {
@@ -204,8 +181,7 @@ module.exports = {
     kpiTop1,
     kpiTop2,
     kpiTop3,
-    gerarGrafico2,
-    plotarLeaderboard
+    gerarGrafico2
 
 
 }

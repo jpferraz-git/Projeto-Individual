@@ -46,8 +46,136 @@ create table supinoGame (
     foreign key(fkUsuario) references Usuario(id_usuario)
 );
 
+-- nome na grafico da leaderboard
+select nome from Usuario join supinoGame on fkUsuario = id_usuario
+                        where cliques = (select max(cliques) from supinoGame);
+                        
+			select nome as nomeUsuario
+            from usuario join supinoGame on fkUsuario = id_usuario
+			where id_usuario = 3
+            group by nome order by max(cliques)
+            desc;
+            
+use gymimpact;
 
+(select max(cliques) from supinoGame);
+
+  SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 2;
+
+SELECT
+    CASE
+        -- Retorna o maior clique geral se não for do usuário específico
+        WHEN fkUsuario is null THEN (SELECT MAX(cliques) FROM supinoGame)
+        
+        -- Caso contrário, retorna o maior clique do usuário específico
+        ELSE (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 5)
+    END AS maior_clique2
+FROM supinoGame
+WHERE fkUsuario = 2
+UNION ALL
+SELECT
+    (SELECT MAX(cliques) FROM supinoGame)
+AS maior_clique2
+FROM DUAL limit 2;
+
+
+ SELECT
+    CASE 
+        WHEN MAX(cliques) = fkUsuario THEN 'usuario_atual_maior_clique'
+        WHEN (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 3) >= (SELECT MAX(cliques) FROM supinoGame) THEN 'maior_cliques'
+        ELSE 'semresultado'
+    END AS resultado , count(cliques) as qtd from supinoGame group by cliques limit 1;
+    
+        select case when resultado like 'A' then 'A'
+        when resultado like 'B' then 'B'
+        when resultado like 'C' then 'C' 
+        when resultado like 'D' then 'D'
+        else 'Sem resultado'
+        end as resultados, count(resultado) as Quantidade
+        from quiz 
+        group by resultado;
+   SELECT
+    (SELECT MAX(cliques) FROM supinoGame) AS maior_clique,
+    (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 4) AS usuario_atual_maior_clique
+		from supinoGame limit 1;
+
+ select nome as nomeTop1 from supinoGame join usuario on id_usuario = fkUsuario
+ where cliques = (select max(cliques) from supinoGame);
+ 
 select count(resultado) as resultadoA from quiz where resultado like 'A';
+
+						select case 
+						when (select max(cliques) from supinoGame) then 'maior'
+						
+                        when (select nome from Usuario join supinoGame on fkUsuario = id_usuario
+                        where cliques = (select max(cliques) from supinoGame)) then 'maiorUsuario'
+                        
+                        when (select nome as nomeTop1 from supinoGame join usuario on id_usuario = fkUsuario
+						where cliques = (select max(cliques) from supinoGame)) then 'cliquesUsuarioAtual'
+						
+                        when (select nome as nomeUsuario
+						from usuario join supinoGame on fkUsuario = id_usuario
+						where id_usuario = 3
+						group by nome order by max(cliques) desc) then 'nomeUsuarioAtual'
+		
+                        else 'semresultado'
+                        end as resultado
+                        from supinoGame join usuario on fkUsuario = id_usuario;
+                        
+                        
+                        select nome as nomeUsuario
+						from usuario join supinoGame on fkUsuario = id_usuario
+						where id_usuario = 2
+						group by nome order by max(cliques) desc;
+
+
+-- Subconsulta para o maior número de cliques
+WITH MaxCliques AS (
+    SELECT MAX(cliques) AS max_cliques FROM supinoGame
+),
+UsuarioMaiorClique AS (
+    SELECT nome AS maiorUsuario 
+    FROM Usuario 
+    JOIN supinoGame ON fkUsuario = id_usuario
+    WHERE cliques = (SELECT max_cliques FROM MaxCliques)
+),
+UsuarioAtual AS (
+    SELECT nome AS nomeUsuarioAtual
+    FROM Usuario 
+    WHERE id_usuario = 2
+),
+UsuarioAtualMaiorClique as (
+	select max(cliques) as cliquesUsuarioAtual from supinoGame
+    where fkUsuario = 3
+)
+SELECT
+    (SELECT max_cliques FROM MaxCliques) AS maior_clique,
+    (SELECT maiorUsuario FROM UsuarioMaiorClique) AS usuario_com_maior_clique,
+    (SELECT nomeUsuarioAtual FROM UsuarioAtual) AS nome_usuario_atual,
+    (select cliquesUsuarioAtual from UsuarioAtualMaiorCLique) as usuario_atual_maior_clique,
+    CASE 
+        WHEN (SELECT max_cliques FROM MaxCliques) THEN 'maior'
+        WHEN (SELECT maiorUsuario FROM UsuarioMaiorClique) THEN 'maiorUsuario'
+        WHEN (SELECT nomeUsuarioAtual FROM UsuarioAtual) THEN 'nomeUsuarioAtual'
+        when (select cliquesUsuarioAtual from UsuarioAtualMaiorClique) then 'cliquesUsuarioAtual'
+        ELSE 'semresultado'
+    END AS resultado
+FROM DUAL;
+
+SELECT
+    (SELECT MAX(cliques) FROM supinoGame) AS maior_clique,
+    (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 4) AS usuario_atual_maior_clique
+		from supinoGame limit 1;
+
+
+  select case when resultado like 'A' then 'A'
+        when resultado like 'B' then 'B'
+        when resultado like 'C' then 'C' 
+        when resultado like 'D' then 'D'
+        else 'Sem resultado'
+        end as resultados, count(resultado) as Quantidade
+        from quiz 
+        group by resultado;
 
  select 
             (select count(resultado) from quiz where resultado like 'A') as resultadoA,
@@ -55,6 +183,7 @@ select count(resultado) as resultadoA from quiz where resultado like 'A';
             (select count(resultado) from quiz where resultado like 'C') as resultadoC,
             (select count(resultado) from quiz where resultado like 'D') as resultadoD;
 	
+select cliques from supinoGame join Usuario on fkUsuario = id_usuario;
     
 select nome as totalCliquesTop1 from usuario join supinoGame o
 	on fkUsuario = id_usuario where cliques = (select cliques
@@ -87,8 +216,8 @@ limit 1 offset 2;
 select cliques from supinoGame;
 
     select nome as totalCliquesTop1
-            from usuario join supinoGame on fkUsuario = idUsuario
-            group by nome order by max(cliques) limit 1 offset 1;
+            from usuario join supinoGame on fkUsuario = id_usuario
+            group by nome order by max(cliques) desc limit 1 offset 1;
 		
 	
 	select truncate(avg(cliques) / 10, 2) as mediaCliquesTop1 from supinoGame

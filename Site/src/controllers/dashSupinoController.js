@@ -134,21 +134,24 @@ function kpiMediaCliquesTop3(req, res) {
 }
         
 
-function plotarLeaderboard(req, res) {
-    // Passe os valores como parâmetro e vá para o arquivo dashSupinoModel.js
-    dashSupinoModel.plotarLeaderboard().then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar o resultado do quiz.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-    }
 
+    function gerarGrafico2(req, res) {
+
+        // Passe os valores como parâmetro e vá para o arquivo supinoModel.js
+        dashSupinoModel.gerarGrafico2().then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+            console.log("Houve um erro ao buscar o resultado do quiz.", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+    }
+    
+    
 module.exports = {
     
     kpiCliquesTop1,
@@ -160,7 +163,7 @@ module.exports = {
     kpiTop1,
     kpiTop2,
     kpiTop3,
-  
-    plotarLeaderboard
+    gerarGrafico2,
+
 
 }

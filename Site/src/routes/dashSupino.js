@@ -39,8 +39,8 @@ router.get("/kpiMediaCliquesTop3", function (req, res) {
   dashSupinoController.kpiMediaCliquesTop3(req, res);
   });
 
-  router.get("/plotarLeaderboard", function (req, res) {
-  dashSupinoController.plotarLeaderboard(req, res);
+  router.get("/gerarGrafico2", function (req, res) {
+    dashSupinoController.gerarGrafico2(req, res);
   });
 
 module.exports = router;
