@@ -130,7 +130,7 @@ aside{
     background: #222222;
     box-shadow: 0 0 15px #35dbe4;
 
-    
+
 }
 
 aside .top, .log{
@@ -232,27 +232,7 @@ main{
 
 }
 
-main .titulo_hora{
- 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 1rem;
 
-}
-
-main #data_e_hora{
-    border-bottom: 5px solid;
-    border-image: linear-gradient(to right, #35dbe4, #222);
-    border-image-slice: 1;
-
-}
-
-main #data_e_hora h1{
- 
-    font-size: 2rem;
-}
 
 main #titulo{
     border-bottom: 5px solid;
@@ -261,7 +241,13 @@ main #titulo{
 
 }
 
+main .relatos{
 
+    width: 100%;
+    height: 100%;
+
+
+}
 main .insights{
 
     display: flex;
@@ -270,46 +256,23 @@ main .insights{
     justify-content: center;
     margin-top: 2.5rem;
     height: 20%;
-    gap: 1.6rem;
+    border: 10px solid #f2f0f0;
+    border-radius: 10px;
     
 }
 
-main .sales, .expenses, .income{
+main .sales{
 
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 100%;
-
-
-}
-
-main .middle{
-
-    margin-bottom: 12px;
-    
-
-}
-main .insights > div{
-
+    height: 95%;
+    width: 95%;
     background: #222222;
-    padding: 10px;
-    border-radius: 1rem;
-    transition: all 300ms ease;
-    width: 100%;
+    border: 10px solid #222222;
+    border-radius: 10px;
 
-}
-
-main .insights div span{
-
-    background: coral;
-    padding: 0.5rem;
-    border-radius: 50%;
-    color: #222222;
-    font-size: 2rem;
-
-    
 }
 
 
@@ -324,10 +287,12 @@ main .insights h3{
 main .divisao_kpi{
 
     height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 
 main .insights .progress .number{

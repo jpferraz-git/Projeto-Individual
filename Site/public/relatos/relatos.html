@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-<body onload="primeiraKPI(), segundaKPI(), terceiraKPI(), gerarGrafico(), mostrarDataHora()">
+<body >
     
     <div class="container">
         <aside>
@@ -23,7 +23,7 @@
             </div>
             <div class="sidebar">
                 <div id="barra"></div>
-                <a href="dashboard.html">
+                <a href="../dashboard/dashboard.html">
                     <span class="material-symbols-sharp">bar_chart_4_bars</span>
                     <h3>Dashboard</h3>
                     <!-- <select>DASHBOARD
@@ -53,52 +53,62 @@
 
         <main>
          
+          <div class="botoes">
+            Procure por algum relato
+            <input id="input">
+            <button onclick="">Conta Tambem sua História</button>
 
+          </div>
+          <div class="relatos">
                 <div class="insights">
                     <div class="divisao_kpi">
                         <div class="sales">
-                          <span class="material-symbols-sharp">
-                            leaderboard
-                            </span>
-                            <h3>Resultado com maior frequência</h3> 
                           
                           </div>
+                
                             <div class="middle">
-                              <b id="resultado_maior_frequencia">aa</b>
+                        
                             
                         </div>
+              
+                        
+                </div>
+                
+                </div>
+                
+                <div class="insights">
+                  <div class="divisao_kpi">
+                      <div class="sales">
+                        
                         </div>
-                        <div class="divisao_kpi">
-                        <div class="expenses">
-                          <span class="material-symbols-sharp">
-                            event_note
-                            </span>
-                            <h3>Último resultado</h3>
-                       
-                    
-                        </div>
-                        <div class="middle">
-                          <b id="resultado_ultimo_kpi"></b>
-                        </div>
+              
+                          <div class="middle">
+                      
+                          
                       </div>
-                       
-                        <div class="divisao_kpi">
-                        <div class="income">
-                            <span class="material-symbols-sharp">monitoring</span>
-                            <h3>Total de respostas</h3>
-                    
-                        </div>
+            
+                      
+              </div>
+              
+              </div>
+              
+              <div class="insights">
+                <div class="divisao_kpi">
+                    <div class="sales">
+                      
+                      </div>
+            
                         <div class="middle">
-                          <b id="resultado_3"></b>
-                  </div>
-                </div>
-                </div>
-
-                <div class="graphBox">
-                    <div class="box">
-                        <canvas id="myChart" width="80%" height="30%"></canvas>
+                    
+                        
                     </div>
-                </div>
+          
+                    
+            </div>
+            
+            </div>
+          </div>
+  
 
         </main>
     </div>
@@ -112,156 +122,6 @@
 
 <script>
 
-    function gerarGrafico(){
-      fetch(`/quiz/gerarGrafico/`, { method: 'GET' })
-      .then(function (response) {
-        if (response.ok) {
-          response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-  
-  
-            plotarGrafico(resposta);
-          });
-        } else {
-          console.error('Nenhum dado encontrado ou erro na API');
-        }
-      })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-      });
-
-    }
-
-    function plotarGrafico(resposta) {
-
-      console.log('iniciando plotagem do gráfico...');
-    
-    
-      let barras = ["A", "B", "C", "D"];
-    
-    
-      let dados = {
-        labels: barras,
-        datasets: [
-          {
-            label: 'A',
-            data: [],
-            backgroundColor: 'rgba(44, 62, 80)', 
-            borderColor: 'rgba(44, 62, 80)',
-           
-          },
-          {
-            label: 'B',
-            data: [],
-            backgroundColor: 'rgba(255, 87, 51)', 
-            borderColor: 'rgba(255, 87, 51)', 
-          
-          },
-          {
-            label: 'C',
-            data: [],
-            backgroundColor: 'rgba(142, 68, 173)',
-            borderColor: 'rgba(142, 68, 173)', 
-          
-          },
-          {
-            label: 'D',
-            data: [],
-            backgroundColor: 'rgba(208, 94, 168, 0.8)', 
-            borderColor: 'rgba(208, 94, 168, 1)',
-          
-            
-          }
-        ]
-      };
-    
-      console.log('----------------------------------------------')
-      console.log('Estes dados foram recebidos pela funcao "gerarGrafico" e passados para "plotarGrafico":')
-      console.log(resposta)
-
-      for (var i = 0; i < resposta.length; i++) {
-        var posicaoRespostaAtual = resposta[i];
-        var valorLabel = barras.indexOf(posicaoRespostaAtual.resultados); 
-        
-        dados.datasets[valorLabel].data[valorLabel] = posicaoRespostaAtual.Quantidade;
-      }
-
-      
-    
-      console.log("Dados finais para plotagem:");
-      console.log(dados);
-      console.log('----------------------------------------------')
-      console.log('O gráfico será plotado com os respectivos valores:')
-      console.log('Labels:')
-      console.log(barras)
-      console.log('Dados:')
-      console.log(dados.datasets)
-      console.log('----------------------------------------------')
-    
-      const config = {
-        type: 'bar',
-        data: dados,
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              labels: {
-                color: '#FFFFFF',
-                font: {
-                  size: 14,
-                },
-              },
-            },
-            title: {
-              display: true,
-              text: 'Resultados Gerais',
-              color: '#FFFFFF',
-              font: {
-                size: 25,
-                weight: 'bold',
-              },
-              padding: {
-                top: 10,
-                bottom: 20,
-              },
-            },
-          },
-          scales: {
-            x: {
-              stacked: true, 
-              ticks: {
-                color: '#FFFFFF',
-                font: {
-                  size: 16,
-                },
-              },
-              grid: {
-                display: false, 
-              },
-            },
-            y: {
-              ticks: {
-                color: '#FFFFFF',
-                font: {
-                  size: 14,
-                },
-              },
-              grid: {
-                color: 'rgba(255, 255, 255, 0.2)',
-              },
-            },
-          },
-          barPercentage: 0.3, 
-          categoryPercentage: 0.8, 
-        },
-      };
-    
-      let myChart = new Chart(
-        document.getElementById(`myChart`),config);
-    
-    }
-    
-    
  
     function mostrarDataHora(){
     var tempo = document.getElementById("horaAtual");

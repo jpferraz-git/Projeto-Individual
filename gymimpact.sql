@@ -79,6 +79,8 @@ SELECT
 AS maior_clique
 FROM DUAL limit 2;
 
+use gymimpact;
+
     SELECT
     CASE
         WHEN fkUsuario is null THEN (SELECT MAX(cliques) FROM supinoGame)
@@ -96,19 +98,22 @@ FROM DUAL limit 2;
 
  SELECT
     CASE 
-        WHEN MAX(cliques) = fkUsuario THEN 'usuario_atual_maior_clique'
+        WHEN MAX(cliques)  THEN 'usuario_atual_maior_clique'
         WHEN (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 3) >= (SELECT MAX(cliques) FROM supinoGame) THEN 'maior_cliques'
         ELSE 'semresultado'
-    END AS resultado , count(cliques) as qtd from supinoGame group by cliques limit 1;
+    END AS resultado from supinoGame group by cliques limit 1;
     
-        select case when resultado like 'A' then 'A'
-        when resultado like 'B' then 'B'
-        when resultado like 'C' then 'C' 
-        when resultado like 'D' then 'D'
-        else 'Sem resultado'
-        end as resultados, count(resultado) as Quantidade
-        from quiz 
-        group by resultado;
+    (SELECT MAX(cliques) as maior_clique FROM supinoGame WHERE fkUsuario = ) 
+UNION ALL
+SELECT
+    (SELECT MAX(cliques) FROM supinoGame)
+AS maior_clique
+limit 2;
+
+select max(cliques) from supinoGame;
+
+select * from usuario;
+
    SELECT
     (SELECT MAX(cliques) FROM supinoGame) AS maior_clique,
     (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 4) AS usuario_atual_maior_clique

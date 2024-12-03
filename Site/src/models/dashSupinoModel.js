@@ -146,23 +146,12 @@ function gerarGrafico2(id_usuario) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados. 
     var instrucaoSql = `
-
-    SELECT
-    CASE
-        -- Retorna o maior clique geral se não for do usuário específico
-        WHEN fkUsuario is null THEN (SELECT MAX(cliques) FROM supinoGame)
-        
-        -- Caso contrário, retorna o maior clique do usuário específico
-        ELSE (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = ${id_usuario})
-    END AS maior_clique
-FROM supinoGame
-WHERE fkUsuario = ${id_usuario}
+    (SELECT MAX(cliques) as maior_clique FROM supinoGame WHERE fkUsuario = ${id_usuario}) 
 UNION ALL
 SELECT
     (SELECT MAX(cliques) FROM supinoGame)
 AS maior_clique
-FROM DUAL limit 2;
-
+limit 2;
     `
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
