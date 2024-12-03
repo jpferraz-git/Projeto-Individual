@@ -75,9 +75,6 @@ h5{
     font-size: 0.75rem;
 }
 
-small {
-    font-size: 0.75rem;
-}
 
 .profile-photo{
 
@@ -224,117 +221,12 @@ aside .sidebar a:hover span{
     margin-left: 2rem;
 }
 
-.comecarJogo{
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 80vw;
-
-}
-
-
-
-.comecarJogo button{
-
-    width: 20rem;
-    height: 5rem;
-    color: #f2f0f0;
-    font-size: 2rem;
-    font-weight: 400;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 0 25px #1360c5;
-    background: #222;
-    transition: all 500ms;
-
-}
-
-.comecarJogo button:hover{
-
-    background: #1360c5;
-    color: #222;
-
-}
-
-#game{
-
-
-    width: 85vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 50px;
-}
-
-#game img{
-
-    width: 50%;
-    border: 10px solid #35dbe4;
-    border-radius: 10px;
-}
-
-.contador_supino{
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 50px;
-}
-
-.contador_supino a{
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    text-align: center;
-}
-
-.barra_tempo{
-
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.barra_tempo span{
-
-    display: inline-block;
-    content: '';
-    height: 20px;
-    width: 30px;
-}
-
-.cores_tempo {
-
-    height: 220px;
-    display: flex;
-    flex-direction: column-reverse;
-    border: 1px solid #f2f0f0;
-
-}
-
-#finalJogo{
-
-    color: #f2f0f0;
-}
-
-
 
 main{
 
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 85vw;
+    flex-direction: column;
+    width: 80vw;
     padding-top: 2rem;
     padding-left: 6rem;
 
@@ -370,38 +262,14 @@ main #titulo{
 }
 
 
-
-main button{
-
-    width: 10rem;
-    height: 2rem;
-    color: #222;
-    font-size: 1rem;
-    font-weight: 400;
-    cursor: pointer;
-    border-radius: 10px;
-    background: #f2f0f0;
-    transition: all 500ms;
-
-}
-
-main button:hover{
-
-    background: #35dbe4;
-    color: #222;
-
-}
-
 main .insights{
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-left: 2.5rem;
-    padding: 20px;
-    height: 80%;
-    width: 40%;
+    margin-top: 2.5rem;
+    height: 20%;
     gap: 1.6rem;
     
 }
@@ -435,7 +303,7 @@ main .insights > div{
 
 main .insights div span{
 
-    background: #1360c5;
+    background: coral;
     padding: 0.5rem;
     border-radius: 50%;
     color: #222222;
@@ -475,12 +343,6 @@ main .insights .progress .number{
 
 }
 
-.insights button{
-
-    width: 200px;
-    height: 100px; 
-}
-
 /* graficos insanos */
 .graphBox{
     position: relative;
@@ -496,89 +358,3 @@ main .insights .progress .number{
 
 }
 
-.graphBox button{
-
-    width: 200px;
-    height: 30px;
-}
-
-.graphBox2{
-    position: relative;
-    width: 100%;
-    margin-top: 1.5rem;
-
-}
-
-.graphBox2 .box{
-  
-    width: 100%;
-    border-radius: 20px;
-    background: #222;
-
-}
-
-.lideres{
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 85vw;
-    padding-top: 2rem;
-    padding-left: 6rem;
-    padding-right: 5rem;
-    padding-bottom: 1rem;
-}
-
-.lideres button{
-
-    width: 200px;
-    height: 30px;
-    color: #222;
-    font-size: 1rem;
-    font-weight: 400;
-    cursor: pointer;
-    border-radius: 10px;
-    background: #f2f0f0;
-    transition: all 500ms;
-
-}
-.lideres h1{
-
-    padding-top: 2rem;
-}
-
-.lideres button:hover{
-    background: #35dbe4;
-    color: #222;
-
-
-}
-
-table{
-
-    margin-top: 2rem;
-    width: 100%;
-    color: #f2f0f0;
-    margin-left: auto;
-
-}
-
-table thead{
-
-    font-size: 1.5rem;
-
-}
-
-table td{
-
-    width: 3rem;
-    padding: 1rem;
-    text-align: center;
-}
-
-tbody tr{
-
-    box-shadow: 0 2px #35dbe4;
-    border-radius: 10px;
-}

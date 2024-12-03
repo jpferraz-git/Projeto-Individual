@@ -138,7 +138,7 @@ function kpiTop3() {
     return database.executar(instrucaoSql);
 }
 
-function gerarGrafico2() {
+function gerarGrafico2(id_usuario) {
 
     // Passe os valores como parâmetro e vá para o arquivo supinoModel.js
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
@@ -153,10 +153,10 @@ function gerarGrafico2() {
         WHEN fkUsuario is null THEN (SELECT MAX(cliques) FROM supinoGame)
         
         -- Caso contrário, retorna o maior clique do usuário específico
-        ELSE (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 5)
+        ELSE (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = ${id_usuario})
     END AS maior_clique
 FROM supinoGame
-WHERE fkUsuario = 2
+WHERE fkUsuario = ${id_usuario}
 UNION ALL
 SELECT
     (SELECT MAX(cliques) FROM supinoGame)

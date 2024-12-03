@@ -62,22 +62,37 @@ use gymimpact;
 
   SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 2;
 
-SELECT
+
+    SELECT
     CASE
         -- Retorna o maior clique geral se não for do usuário específico
         WHEN fkUsuario is null THEN (SELECT MAX(cliques) FROM supinoGame)
         
         -- Caso contrário, retorna o maior clique do usuário específico
         ELSE (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 5)
-    END AS maior_clique2
+    END AS maior_clique
 FROM supinoGame
 WHERE fkUsuario = 2
 UNION ALL
 SELECT
     (SELECT MAX(cliques) FROM supinoGame)
-AS maior_clique2
+AS maior_clique
 FROM DUAL limit 2;
 
+    SELECT
+    CASE
+        WHEN fkUsuario is null THEN (SELECT MAX(cliques) FROM supinoGame)
+        WHEN fkUsuario is null THEN (SELECT MAX(cliques) FROM supinoGame limit 1 offset 1)
+        WHEN fkUsuario is null THEN (SELECT MAX(cliques) FROM supinoGame limit 1 offset 2)
+        ELSE (SELECT MAX(cliques) FROM supinoGame WHERE fkUsuario = 5)
+    END AS maior_clique
+FROM supinoGame
+WHERE fkUsuario = 5
+UNION ALL
+SELECT
+    (SELECT MAX(cliques) FROM supinoGame)
+AS maior_clique
+FROM DUAL limit 2;
 
  SELECT
     CASE 

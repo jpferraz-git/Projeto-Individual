@@ -55,13 +55,14 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3(), gerarGrafico2()">
     <main id="main">
         
         <div class="graphBox">         
-        <button onclick="">Tentar Novamente</button>
+      
             <div class="box">
                 <canvas id="myChart" width="80%" height="60%"></canvas>
             </div>
         </div>
 
          <div class="insights">
+          <button onclick="jogarNovamente()">Jogar Novamente</button>
             <button onclick="verLiderança()">Ver Liderança</button>
              <div class="divisao_kpi">
                  <div class="sales">
@@ -162,7 +163,7 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3(), gerarGrafico2()">
    
   
   function gerarGrafico2(){
-    fetch(`/dashSupino/gerarGrafico2/`, { method: 'GET' })
+    fetch(`/dashSupino/gerarGrafico2/${sessionStorage.ID_USUARIO}`, { method: 'GET' })
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (resposta) {
@@ -191,15 +192,15 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3(), gerarGrafico2()">
         {
           label: 'Seu Melhor Resultado',
           data: [],
-          backgroundColor: 'rgba(102, 204, 178, 0.8)', 
-          borderColor: 'rgba(102, 204, 178, 1)',
+          backgroundColor: 'rgb(242, 240, 240)', 
+          borderColor: 'rgb(242, 240, 240)',
          
         },
         {
           label: 'Resultado do Líder',
           data: [],
-          backgroundColor: 'rgba(102, 153, 255, 0.8)', 
-          borderColor: 'rgba(102, 153, 255, 1)', 
+          backgroundColor: 'rgb(33, 226, 236)', 
+          borderColor: 'rgb(33, 226, 236)', 
         
         },
     
@@ -693,6 +694,11 @@ function kpiTop3(){
     .catch(function (error) {
       console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
     });
+}
+
+function jogarNovamente(){
+
+  window.location = "supino.html"; 
 }
 
 

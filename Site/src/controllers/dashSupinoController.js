@@ -136,9 +136,9 @@ function kpiMediaCliquesTop3(req, res) {
 
 
     function gerarGrafico2(req, res) {
-
+        var id_usuario = req.params.id_usuario;
         // Passe os valores como parâmetro e vá para o arquivo supinoModel.js
-        dashSupinoModel.gerarGrafico2().then(function (resultado) {
+        dashSupinoModel.gerarGrafico2(id_usuario).then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
             } else {

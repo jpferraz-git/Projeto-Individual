@@ -39,7 +39,7 @@ router.get("/kpiMediaCliquesTop3", function (req, res) {
   dashSupinoController.kpiMediaCliquesTop3(req, res);
   });
 
-  router.get("/gerarGrafico2", function (req, res) {
+  router.get("/gerarGrafico2/:id_usuario", function (req, res) {
     dashSupinoController.gerarGrafico2(req, res);
   });
 
