@@ -93,11 +93,7 @@ small {
 
 }
 
-p{
 
-    color: blue;
-
-}
 
 b{
 
@@ -268,14 +264,22 @@ aside .sidebar a:hover span{
 
 }
 
-#game img{
 
-    width: 40%;
+#img_jogo {
+    width: 375px;
+    height: auto; 
     border: 5px solid #35dbe4;
     border-radius: 10px;
     margin-right: 6rem;
+    
+
 }
 
+#img_jogo img {
+    width: 100%;
+    height: 100%; 
+
+}
 .contador_supino{
 
     display: flex;
@@ -346,7 +350,7 @@ a{
     height: 220px;
     display: flex;
     flex-direction: column-reverse;
-    border: 1px solid #f2f0f0;
+    border: 1px solid #e8aea1;
 
 }
 

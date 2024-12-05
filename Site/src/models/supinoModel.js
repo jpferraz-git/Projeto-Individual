@@ -66,7 +66,7 @@ function terceiraKPI() {
     var instrucaoSql = `
         
     select greatest(segundo1, segundo2, segundo3, segundo4, segundo5, segundo6, segundo7, segundo8, segundo9, segundo10) as maiorPico
-    from supinogame order by idGame desc limit 1;
+    from supinoGame order by idGame desc limit 1;
 
     `
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

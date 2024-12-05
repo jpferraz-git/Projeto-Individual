@@ -2,7 +2,7 @@ create database gymimpact;
 
 use gymimpact;
 
-create table Usuario(
+create table usuario(
 id_usuario int primary key auto_increment,
 nome varchar(100),
 email varchar (100),
@@ -96,6 +96,23 @@ SELECT
 AS maior_clique
 FROM DUAL limit 2;
 
+use gymimpact;
+select * from quiz;
+
+  select case when resultado like 'A' then 'Disciplinado'
+        when resultado like 'B' then 'Esforçado'
+        when resultado like 'C' then 'Comprometido' 
+        when resultado like 'D' then 'Aprendiz'
+        else 'none'
+        end as maiorResultado 
+        from quiz order by maiorResultadodesc limit 1;
+
+        
+(select resultado as ultimoResultado from quiz order by resultado desc limit 1)
+;
+
+
+
  SELECT
     CASE 
         WHEN MAX(cliques)  THEN 'usuario_atual_maior_clique'
@@ -103,7 +120,7 @@ FROM DUAL limit 2;
         ELSE 'semresultado'
     END AS resultado from supinoGame group by cliques limit 1;
     
-    (SELECT MAX(cliques) as maior_clique FROM supinoGame WHERE fkUsuario = ) 
+    (SELECT MAX(cliques) as maior_clique FROM supinoGame WHERE fkUsuario = 2) 
 UNION ALL
 SELECT
     (SELECT MAX(cliques) FROM supinoGame)

@@ -20,10 +20,10 @@ function primeiraKPI() {
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
       
-          select case when resultado like 'A' then 'Abacaxi'
-        when resultado like 'B' then 'Batata'
-        when resultado like 'C' then 'Cenoura' 
-        when resultado like 'D' then 'Damasco'
+          select case when resultado like 'Disciplinado' then 'Disciplinado'
+        when resultado like 'Esforçado' then 'Esforçado'
+        when resultado like 'Comprometido' then 'Comprometido' 
+        when resultado like 'Aprendiz' then 'Aprendiz'
         else 'none'
         end as maiorResultado, count(resultado) as qtdResult 
         from quiz group by maiorResultado order by qtdResult desc limit 1;
@@ -65,10 +65,10 @@ function gerarGrafico(){
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function gerarGrafico():");
 
     var instrucaoSql = `
-     select case when resultado like 'A' then 'A'
-        when resultado like 'B' then 'B'
-        when resultado like 'C' then 'C' 
-        when resultado like 'D' then 'D'
+     select case when resultado like 'Disciplinado' then 'Disciplinado'
+        when resultado like 'Esforçado' then 'Esforçado'
+        when resultado like 'Comprometido' then 'Comprometido' 
+        when resultado like 'Aprendiz' then 'Aprendiz'
         else 'Sem resultado'
         end as resultados, count(resultado) as Quantidade
         from quiz 

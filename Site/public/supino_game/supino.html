@@ -59,7 +59,9 @@
             <h1>AJUDE PINGUS A EVOLUIR NO TREINO</h1>
             <h1>APERTE A <b>BARRA DE ESPAÇO</b> PARA AUMENTAR AS REPETIÇÕES </h1>
             <div class="contador_supino">
-                <img src="../assets/workout-gym.gif">
+                <div id="img_jogo">
+                    <img src="../assets/supino_negativa.png">
+                </div>
                     <div class="contador_clique">
                     <a id="negrito">REPETIÇÕES</a>
 
@@ -130,23 +132,39 @@
             contarTempo();
         }
 
-        // Atualiza o valor exibido na tela
-        function atualizarContador() {
-          document.getElementById('mostrarCliques').textContent = qtdCliques;
-        }
+
+
+  
         
         // Adiciona um evento de teclado para capturar a barra de espaço
         document.addEventListener('keydown', (event) => {
-          if (event.code == 'Space') { // Verifica se a tecla pressionada é a barra de espaço
-            event.preventDefault();
-            qtdCliques++; // Incrementa o valor do contador
-            atualizarContador(); // Atualiza o valor na tela
+          if (event.code == 'Space') {
+
+            qtdCliques = qtdCliques + 1;
+            atualizarContador();
+            trocarImagem();
           }
         });
       
    
     }
 
+    function atualizarContador() {
+        document.getElementById('mostrarCliques').textContent = qtdCliques;
+      }
+
+      function trocarImagem(){
+
+        if(qtdCliques % 2 == 0){
+
+            img_jogo.innerHTML = `<img src="../assets/supino_negativa.png"> ` 
+
+        }else{
+
+            img_jogo.innerHTML = `<img src="../assets/supino_positiva.png"> ` 
+
+        }
+    }
     var valorSegundo1 = 0;
     var valorSegundo2 = 0;
     var valorSegundo3 = 0;

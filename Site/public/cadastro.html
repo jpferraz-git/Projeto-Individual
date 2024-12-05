@@ -64,6 +64,23 @@
 
 <script>
 
+  function verificarNumeros(senhaVar){
+
+    return /\d/.test(senhaVar);
+
+  }
+
+  function verificarCaracteresEspeciais(senhaVar) {
+    var caracteresEspeciais = "!@#$%&*";
+    
+    for (let i = 0; i < senhaVar.length; i++) {
+      if (caracteresEspeciais.includes(senhaVar[i])) {
+        return true;
+      }
+    }
+    
+    return false;
+  }
   function cadastrar() {
     // aguardar();
 
@@ -74,6 +91,28 @@
     var senhaVar = input_senha.value;
     var confirmacaoSenhaVar = input_senha_confirmacao.value;
 
+    if(emailVar.indexOf("@") == -1 || emailVar.indexOf(".") == -1){
+
+      return alert("Email precisa ter @ e .")
+
+    }else if(senhaVar.length < 8){
+
+      return alert("Senha precisa ter mais de 8 caracteres")
+    }
+    else if(!verificarNumeros(senhaVar)){
+
+      return alert("A senha precisa ter números")
+  
+    }else if(verificarCaracteresEspeciais(senhaVar) == false){
+
+      return alert("Senha precisa de caracter especial")
+    }
+    
+    else if(senhaVar != confirmacaoSenhaVar){
+      
+      return alert("Senhas são diferentes");
+
+    }
 
     // Verificando se há algum campo em branco
     if (nomeVar == "" ||
