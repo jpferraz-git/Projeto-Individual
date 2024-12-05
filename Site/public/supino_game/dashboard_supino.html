@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>GAME DASHBOARD</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="dashboard_supino.css">
     <link rel="icon" href="../assets/logo_branca.png">
@@ -69,7 +69,7 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3(), gerarGrafico2()">
                     <span class="material-symbols-sharp">
                         percent
                         </span>
-                     <h3>Média de Cliques por Segundo </h3> 
+                     <h3>Média de Repetições</h3> 
                    
                    </div>
                      <div class="middle">
@@ -82,9 +82,7 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3(), gerarGrafico2()">
                     <span class="material-symbols-sharp">
                         trending_up
                         </span>
-                     <h3>Total de Cliques</h3>
-                
-             
+                     <h3>Total de Repetições</h3>
                  </div>
                  <div class="middle">
                    <b id="total_cliques"></b>
@@ -120,10 +118,10 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3(), gerarGrafico2()">
                     Usuário
                 </td>
                 <td>
-                    Cliques Máximo
+                    Repetições Máximas
                 </td>
                 <td>
-                    Média Cliques
+                    Média Repetições
                 </td>
                 </tr>
             </thead>
@@ -326,13 +324,13 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3(), gerarGrafico2()">
           labels: barras,
           datasets: [
             {
-            label: 'Cliques Crescentes',
+            label: 'Repetições Crescentes',
               data: [],
               backgroundColor: 'rgb(33, 226, 236)', 
               borderColor: 'rgb(33, 226, 236)'
             },
             {
-            label: 'Cliques em Cada Segundo',
+            label: 'Repetições em Cada Segundo',
               data: [],
               backgroundColor: 'rgb(19, 96, 197)', 
               borderColor: 'rgb(19, 96, 197)'
@@ -397,7 +395,7 @@ kpiMediaCliquesTop3(), kpiTop1(), kpiTop2(), kpiTop3(), gerarGrafico2()">
               },
               title: {
                 display: true,
-                text: 'Cliques Por Segundo',
+                text: 'Repetições Por Segundo',
                 color: '#FFFFFF',
                 font: {
                   size: 25,

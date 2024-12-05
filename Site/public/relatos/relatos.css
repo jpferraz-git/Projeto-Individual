@@ -90,12 +90,6 @@ h5{
 
 }
 
-p{
-
-    color: blue;
-
-}
-
 b{
 
     font-size: 20px;
@@ -234,11 +228,48 @@ main{
 
 
 
-main #titulo{
-    border-bottom: 5px solid;
-    border-image: linear-gradient(to left, #35dbe4, #222);
-    border-image-slice: 1;
+main .botoes{
 
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
+   
+
+}
+
+main .botoes input{
+
+    width: 200px;
+    height: 30px;
+    padding-right: 20px;
+    border: 10px transparent;
+    border-radius: 10px;
+    transition: all 500ms;
+    background-color: #12bac3;
+   
+}
+
+main .botoes input:hover{
+
+
+   background: #f2f0f0;
+
+}
+main .procurar{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+main .procurar span{
+
+    font-size: 3rem;
+    
 }
 
 main .relatos{
@@ -295,18 +326,19 @@ main .divisao_kpi{
 
 }
 
-main .insights .progress .number{
+main .divisao_kpi #nome{
 
-    position: relative;
-    top:0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    align-self: flex-start;
+    justify-content: flex-start;
+    
+}
+main .sales{
+
+    align-self: flex-start;
+    padding-left: 30px;
 
 }
+
 
 /* graficos insanos */
 .graphBox{
@@ -323,3 +355,24 @@ main .insights .progress .number{
 
 }
 
+button{
+
+    width: 200px;
+    height: 30px;
+    color: #f2f0f0;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 500ms;
+    background-color: #12bac3;
+
+}
+
+button:hover{
+
+    background: #f2f0f0;
+    color: #222222;
+
+
+}

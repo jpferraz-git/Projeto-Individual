@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>GAME</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="supino.css">
     <link rel="icon" href="../assets/logo_branca.png">
@@ -57,17 +57,19 @@
 
         <div id="game" style="display: none;">
             <h1>AJUDE PINGUS A EVOLUIR NO TREINO</h1>
-            <h1>CADA CLIQUE É UMA REPETIÇÃO</h1>
+            <h1>APERTE A <b>BARRA DE ESPAÇO</b> PARA AUMENTAR AS REPETIÇÕES </h1>
             <div class="contador_supino">
                 <img src="../assets/workout-gym.gif">
                     <div class="contador_clique">
-                    <a>CLIQUES</a>
+                    <a id="negrito">REPETIÇÕES</a>
+
                     <a id="mostrarCliques">0</a> 
                     </div>
 
             
             <div class="barra_tempo">
-                <a>TEMPO</a>
+                <a id="negrito">TEMPO</a>
+            
                 <div class="cores_tempo">
                     <span id="segundo_0" style="background: transparent;"></span>
                     <span id="segundo_1" style="background-color:#1360c5 ; display:none;"></span>
@@ -82,8 +84,8 @@
                     <span id="segundo_10" style="background-color: #35dbe4;  display:none;"></span>
                     <span id="segundo_11" style="background-color: #21e2ec;  display:none;"></span>
                 </div>
-                <a id="tempo"></a>
                 
+                <a id="tempo"></a>
             </div>
             
             </div>
@@ -101,67 +103,7 @@
     </div>
    </div>
 
-    
-    <main id="main" style="display: none;">
-        
-        <div class="graphBox">
-            <a>PARABÉNS, VOCÊ AJUDOU PINGU A FAZER <a id="repeticoes"></a> REPETIÇÕES</a>
-            
-        <button onclick="">Tentar Novamente</button>
-            <div class="box">
-                <canvas id="myChart" width="80%" height="60%"></canvas>
-            </div>
-        </div>
-
-         <div class="insights">
-            <button onclick="">Ver Dash</button>
-             <div class="divisao_kpi">
-                 <div class="sales">
-                    <span class="material-symbols-sharp">
-                        percent
-                        </span>
-                     <h3>Média de Cliques por Segundo </h3> 
-                   
-                   </div>
-                     <div class="middle">
-                       <b id="media_cliques">aa</b>
-                     
-                 </div>
-                 </div>
-                 <div class="divisao_kpi">
-                 <div class="expenses">
-                    <span class="material-symbols-sharp">
-                        trending_up
-                        </span>
-                     <h3>Total de Cliques</h3>
-                
-             
-                 </div>
-                 <div class="middle">
-                   <b id="total_cliques"></b>
-                 </div>
-               </div>
-                
-                 <div class="divisao_kpi">
-                 <div class="income">
-                    <span class="material-symbols-sharp">
-                        timer_10_alt_1
-                        </span>
-                     <h3>Maior Pico por Segundo</h3>
-             
-                 </div>
-                 <div class="middle">
-                   <b id="pico_clique"></b>
-           </div>
-         </div>
-         </div>
-
-  
-
- </main>
 </div>
-    
-    </div>
     </body>
 
 
