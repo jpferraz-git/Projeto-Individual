@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
-<body >
+<body onload="mostrarRelatos()">
     
     <div class="container">
         <aside>
@@ -53,7 +53,7 @@
 
         <main>
          
-          <div class="botoes">
+          <div class="botoes" id="parte_botoes">
    
             <div class="procurar">
             <span class="material-symbols-sharp">
@@ -61,63 +61,44 @@
               </span>
             <input id="input" placeholder="         Procure por algum relato">
           </div>
-            <button onclick="">Conta Tambem sua História</button>
+            <button onclick="contarHistoria()">Conta Também Sua História</button>
 
           </div>
-          <div class="relatos">
-                <div class="insights">
-                    <div class="divisao_kpi">
-                    
-                      <div id="nome">
-                      <p>NOME</p>
-                      </div>
-                        <div class="sales">
-                          asd
-                          </div>
-                
-                            <div class="middle">
-                        
-                       
-                        </div>
-              
-                        
-                </div>
-                
-                </div>
-                
-                <div class="insights">
-                  <div class="divisao_kpi">
-                      <div class="sales">
-                        
-                        </div>
-              
-                          <div class="middle">
-                      
-                          
-                      </div>
-            
-                      
-              </div>
-              
-              </div>
-              
-              <div class="insights">
-                <div class="divisao_kpi">
-                    <div class="sales">
-                      
-                      </div>
-            
-                        <div class="middle">
-                    
-                        
-                    </div>
-          
-                    
-            </div>
-            
-            </div>
+          <div class="relatos" id="parte_relatos">
+     
+            <div class="insights" id="insi_relatos">
+             
+                  
           </div>
-  
+          
+      
+              </div>
+          
+         
+          
+          <div class="container-contato" id="relatos_container" style="display: none;">
+
+            <div class="contato-esquerda">
+                <div class="contato-esquerda-titulo">
+                  <h2>Conte sua História</h2>
+                  <hr>
+                </div>
+                <textarea class="input-contato" id="relato_usuario" placeholder="Conte sua História">
+                </textarea>
+                <button onclick="cadastrar()">
+                    <span class="material-symbols-sharp">
+                      forward_to_inbox
+                      </span>
+                      <span>Enviar</span>
+                  </button>
+                 
+            </div>
+            
+            <div class="contato-direita">
+              <img src="../assets/fitness.png">
+            </div>
+
+          </div>
 
         </main>
     </div>
@@ -132,27 +113,95 @@
 <script>
 
  
-    function mostrarDataHora(){
-    var tempo = document.getElementById("horaAtual");
 
-    setInterval(() => {
 
-    var hora = new Date();
-    tempo.innerHTML = hora.toLocaleTimeString();
+function contarHistoria(){
+
+  document.getElementById('relatos_container').style.display = 'flex'; 
+  document.getElementById('parte_relatos').style.display = 'none'; 
+  document.getElementById('parte_botoes').style.display = 'none'; 
+
+}
+
+function showRelatos(){
+
+
+
+}
     
-    }, 1000)
+  function cadastrar() {
+    // aguardar();
 
-    }
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var relatoVar = relato_usuario.value;
 
-    
-      function primeiraKPI() {
-        fetch(`/quiz/primeiraKPI/`, { method: 'GET' })
+    // Enviando o valor da nova input
+    fetch("/relatos/cadastrar/${sessionStorage.ID_USUARIO}", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        usuarioServer: sessionStorage.ID_USUARIO,
+        relatosServer: relatoVar
+      }),
+    })
+  .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+        
+          document.getElementById('relatos_container').style.display = 'none'; 
+          document.getElementById('parte_relatos').style.display = 'block'; 
+          document.getElementById('parte_botoes').style.display = 'flex'; 
+
+       
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+
+      });
+
+    return false;
+  }
+
+
+      function mostrarRelatos() {
+        fetch(`/relatos/mostrarRelatos`, { method: 'GET' })
           .then(function (response) {
             if (response.ok) {
               response.json().then(function (resposta) {
                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
       
-                resultado_maior_frequencia.innerHTML = `${resposta.maiorResultado}`
+                
+
+                    for (let i = 0; i < resposta.length; i++) {
+                      var dadoAtual = resposta[i];
+
+                    insi_relatos.innerHTML += `
+        
+                    <div class="divisao_kpi">
+                    
+                      <div id="nome">
+                      <p> <b>${dadoAtual.nome}</b>   </p>
+                      </div>
+                        <div class="sales">
+                          ${dadoAtual.relato}
+                          </div>
+              
+                        
+                </div>
+                
+                </div>
+                
+                  `
+                }
       
               });
             } else {
@@ -162,46 +211,6 @@
           .catch(function (error) {
             console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
           });
-      }
-      
-function segundaKPI(){
-
-    fetch(`/quiz/segundaKPI/`, { method: 'GET' })
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-          resultado_ultimo_kpi.innerHTML = `${resposta.ultimoResultado}`
-
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
-    .catch(function (error) {
-      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-    });
-}
-
-function terceiraKPI(){
-
-    fetch(`/quiz/terceiraKPI/`, { method: 'GET' })
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (resposta) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-          resultado_3.innerHTML = `${resposta.result}`
-
-        });
-      } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-      }
-    })
-    .catch(function (error) {
-      console.error(`Erro na obtenção dos dados para o gráfico: ${error.message}`);
-    });
-}
+        }
 
 </script>

@@ -339,7 +339,6 @@ main{
     padding-left: 6rem;
 
 }
-
 main .titulo_hora{
  
     display: flex;
@@ -362,11 +361,14 @@ main #data_e_hora h1{
     font-size: 2rem;
 }
 
-main #titulo{
-    border-bottom: 5px solid;
-    border-image: linear-gradient(to left, #35dbe4, #222);
-    border-image-slice: 1;
+.select{
 
+    font-size: 2rem;
+    width: 100%;
+    color: white;
+    background: #1a1a1a;
+
+    
 }
 
 

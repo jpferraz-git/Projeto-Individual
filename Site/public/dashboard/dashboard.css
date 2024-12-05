@@ -254,6 +254,15 @@ main #data_e_hora h1{
     font-size: 2rem;
 }
 
+.select{
+
+    font-size: 2rem;
+    width: 100%;
+    color: white;
+    background: #1a1a1a;
+
+    
+}
 main #titulo{
     border-bottom: 5px solid;
     border-image: linear-gradient(to left, #35dbe4, #222);

@@ -54,8 +54,13 @@
         <main>
                <div class="titulo_hora">
                     <div id="titulo">
-                    <h1>Dashboard</h1>
-                 
+                      <select class="select" id="meu_select" onchange="irParaLink()">
+                        <option value="#">Dashboard</option>
+                        <option value="../dashboard/dashboard.html">Dashboard Quiz</option>
+                        <option value="../supino_game/dashboard_supino.html">Dashboard Supino</option>
+
+                      </select>
+              
                     </div>
                     <div id="data_e_hora">
                     <h1 id="horaAtual">00:00:00</h1>
@@ -120,6 +125,13 @@
 </html>
 
 <script>
+
+  function irParaLink() {
+    var select = document.getElementById("meu_select");
+    var url = select.value;
+    if (url) {
+      window.location.href = url;    }
+  }
 
     function gerarGrafico(){
       fetch(`/quiz/gerarGrafico/`, { method: 'GET' })

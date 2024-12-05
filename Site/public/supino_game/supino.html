@@ -293,7 +293,7 @@
         // Verificando se há algum campo em branco
 
         // Enviando o valor da nova input
-        fetch("/supino/cadastrar", {
+        fetch("/supino/cadastrar/${sessionStorage.ID_USUARIO}", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

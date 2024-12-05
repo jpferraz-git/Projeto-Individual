@@ -14,13 +14,13 @@ idQuiz int primary key auto_increment,
 resultado varchar(100),
 horaResultado DATETIME DEFAULT CURRENT_TIMESTAMP,
 fkUsuario int,
-foreign key(fkUsuario) references Usuario(id_usuario)
+foreign key(fkUsuario) references usuario(id_usuario)
 );
 
 
 create table supinoGame (
     idGame int primary key auto_increment,
-    horaResultado DATETIME DEFAULT CURRENT_TIMESTAMP,
+    horaResultado datetime default current_timestamp,
     intervalo1 int,
     intervalo2 int,
     intervalo3 int,
@@ -43,8 +43,27 @@ create table supinoGame (
     segundo9 int,
     segundo10 int,
     fkUsuario int,
-    foreign key(fkUsuario) references Usuario(id_usuario)
+    foreign key(fkUsuario) references usuario(id_usuario)
 );
+
+
+create table relatos(
+idRelato int auto_increment,
+horaRelato datetime default current_timestamp,
+relato text,
+primary key(idRelato, fkUsuario),
+fkUsuario int,
+foreign key (fkUsuario) references usuario(id_usuario)
+);
+
+
+use gymimpact;
+
+insert into relatos (relato, fkUsuario) values
+('amo sptech', 1);
+
+select nome, relato from relatos
+join usuario on fkUsuario = id_usuario;
 
 -- nome na grafico da leaderboard
 select nome from Usuario join supinoGame on fkUsuario = id_usuario
