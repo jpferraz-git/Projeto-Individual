@@ -131,16 +131,12 @@
 
             contarTempo();
         }
-
-
-
   
         
-        // Adiciona um evento de teclado para capturar a barra de espaço
+        
         document.addEventListener('keydown', (event) => {
           if (event.code == 'Space') {
-
-            qtdCliques = qtdCliques + 1;
+            qtdCliques++;
             atualizarContador();
             trocarImagem();
           }
@@ -293,7 +289,7 @@
         // Verificando se há algum campo em branco
 
         // Enviando o valor da nova input
-        fetch("/supino/cadastrar/${sessionStorage.ID_USUARIO}", {
+        fetch("/supino/cadastrar", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
