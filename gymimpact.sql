@@ -60,7 +60,7 @@ foreign key (fkUsuario) references usuario(id_usuario)
 use gymimpact;
 
 insert into relatos (relato, fkUsuario) values
-('amo sptech', 1);
+('amo sptech', 5);
 
 select nome, relato from relatos
 join usuario on fkUsuario = id_usuario;
